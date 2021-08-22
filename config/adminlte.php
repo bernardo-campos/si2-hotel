@@ -272,29 +272,29 @@ return [
             'submenu'   => [
                 [
                     'text'      => 'Listado',
-                    'url'       => '#',
+                    'route'     => 'attendant.clients.index',
                     'classes'   => 'pl-4'
                 ],
                 [
                     'text'      => 'Registrar',
-                    'url'       => '#',
+                    'route'     => 'attendant.clients.create',
                     'classes'   => 'pl-4'
                 ],
             ]
         ],
         [
             'text'      => 'Reservas',
-            'url'       => '#',
+            'route'     => 'attendant.rooms.index',
             'hasRole'   => 'Encargado',
         ],
         [
             'text'      => 'Habitaciones',
-            'url'       => '#',
+            'route'     => 'attendant.reservations.index',
             'hasRole'   => 'Encargado',
         ],
         [
             'text'      => 'Pagos',
-            'url'       => '#',
+            'route'     => 'attendant.payments.index',
             'hasRole'   => 'Encargado',
         ],
 
@@ -302,22 +302,22 @@ return [
         ['header' => 'ÁREA ADMINISTRADOR', 'hasRole' => 'Administrador'],
         [
             'text'      => 'Empleados',
-            'url'       => '#',
+            'route'     => 'admin.employees.index',
             'hasRole'   => 'Administrador',
         ],
         [
             'text'      => 'Habitaciones',
-            'url'       => '#',
+            'route'     => 'admin.rooms.index',
             'hasRole'   => 'Administrador',
         ],
         [
             'text'      => 'Reservas',
-            'url'       => '#',
+            'route'     => 'admin.reservations.index',
             'hasRole'   => 'Administrador',
         ],
         [
             'text'      => 'Menús',
-            'url'       => '#',
+            'route'     => 'admin.menus.index',
             'hasRole'   => 'Administrador',
         ],
         [
@@ -325,29 +325,29 @@ return [
             'hasRole'   => 'Administrador',
             'submenu'   => [
                 [
-                    'text'  => 'Empleados',
-                    'url'   => '#',
-                    'classes' => 'pl-4'
+                    'text'      => 'Empleados',
+                    'route'     => 'admin.reports.employees',
+                    'classes'   => 'pl-4'
                 ],
                 [
-                    'text'  => 'Reservas',
-                    'url'   => '#',
-                    'classes' => 'pl-4'
+                    'text'      => 'Reservas',
+                    'route'     => 'admin.reports.reservations',
+                    'classes'   => 'pl-4'
                 ],
                 [
-                    'text'  => 'Pagos',
-                    'url'   => '#',
-                    'classes' => 'pl-4'
+                    'text'      => 'Pagos',
+                    'route'     => 'admin.reports.payments',
+                    'classes'   => 'pl-4'
                 ],
                 [
-                    'text'  => 'Ocupación',
-                    'url'   => '#',
-                    'classes' => 'pl-4'
+                    'text'      => 'Ocupación',
+                    'route'     => 'admin.reports.occupation',
+                    'classes'   => 'pl-4'
                 ],
                 [
-                    'text'  => 'Servicios',
-                    'url'   => '#',
-                    'classes' => 'pl-4'
+                    'text'      => 'Servicios',
+                    'route'     => 'admin.reports.services',
+                    'classes'   => 'pl-4'
                 ],
 
             ]
