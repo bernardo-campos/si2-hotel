@@ -236,87 +236,126 @@ return [
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
+        // Todos los roles o No logueado
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text'        => 'Mis datos',
+            'url'         => '#',
+            'icon'        => 'fas fa-fw fa-user-edit',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'        => 'Consultar servicios',
+            'url'         => '#',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Consultar habitaciones',
+            'url'         => '#',
         ],
-        ['header' => 'account_settings'],
+
+        // Menu Cliente
+        ['header' => 'ÁREA CLIENTE', 'hasRole' => 'Cliente'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text'      => 'Mis Reservas',
+            'url'       => '#',
+            'hasRole'   => 'Cliente',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
+            'text'      => 'Consultar menú',
+            'url'       => '#',
+            'hasRole'   => 'Cliente',
+        ],
+
+        // Menu Encargado
+        ['header' => 'ÁREA ENCARGADO', 'hasRole' => 'Encargado'],
+        [
+            'text'      => 'Clientes',
+            'hasRole'   => 'Encargado',
+            'submenu'   => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'      => 'Listado',
+                    'url'       => '#',
+                    'classes'   => 'pl-4'
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text'      => 'Registrar',
+                    'url'       => '#',
+                    'classes'   => 'pl-4'
+                ],
+            ]
+        ],
+        [
+            'text'      => 'Reservas',
+            'url'       => '#',
+            'hasRole'   => 'Encargado',
+        ],
+        [
+            'text'      => 'Habitaciones',
+            'url'       => '#',
+            'hasRole'   => 'Encargado',
+        ],
+        [
+            'text'      => 'Pagos',
+            'url'       => '#',
+            'hasRole'   => 'Encargado',
+        ],
+
+        // Menu Administrador
+        ['header' => 'ÁREA ADMINISTRADOR', 'hasRole' => 'Administrador'],
+        [
+            'text'      => 'Empleados',
+            'url'       => '#',
+            'hasRole'   => 'Administrador',
+        ],
+        [
+            'text'      => 'Habitaciones',
+            'url'       => '#',
+            'hasRole'   => 'Administrador',
+        ],
+        [
+            'text'      => 'Reservas',
+            'url'       => '#',
+            'hasRole'   => 'Administrador',
+        ],
+        [
+            'text'      => 'Empleados',
+            'url'       => '#',
+            'hasRole'   => 'Administrador',
+        ],
+        [
+            'text'      => 'Menús',
+            'url'       => '#',
+            'hasRole'   => 'Administrador',
+        ],
+        [
+            'text'      => 'Informes',
+            'hasRole'   => 'Administrador',
+            'submenu'   => [
+                [
+                    'text'  => 'Empleados',
+                    'url'   => '#',
+                    'classes' => 'pl-4'
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'  => 'Reservas',
+                    'url'   => '#',
+                    'classes' => 'pl-4'
                 ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+                [
+                    'text'  => 'Pagos',
+                    'url'   => '#',
+                    'classes' => 'pl-4'
+                ],
+                [
+                    'text'  => 'Ocupación',
+                    'url'   => '#',
+                    'classes' => 'pl-4'
+                ],
+                [
+                    'text'  => 'Servicios',
+                    'url'   => '#',
+                    'classes' => 'pl-4'
+                ],
+
+            ]
         ],
     ],
 
@@ -340,6 +379,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        App\Filters\HasRoleFilter::class,
     ],
 
     /*
