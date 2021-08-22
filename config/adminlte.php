@@ -238,29 +238,29 @@ return [
 
         // Todos los roles o No logueado
         [
-            'text'        => 'Mis datos',
-            'url'         => '#',
-            'icon'        => 'fas fa-fw fa-user-edit',
+            'text'  => 'Mis datos',
+            'route' => 'profile.edit',
+            'icon'  => 'fas fa-fw fa-user-edit',
         ],
         [
             'text'        => 'Consultar servicios',
-            'url'         => '#',
+            'route'       => 'web.services.index',
         ],
         [
             'text'        => 'Consultar habitaciones',
-            'url'         => '#',
+            'route'       => 'web.rooms.index',
         ],
 
         // Menu Cliente
         ['header' => 'ÁREA CLIENTE', 'hasRole' => 'Cliente'],
         [
             'text'      => 'Mis Reservas',
-            'url'       => '#',
+            'route'     => 'client.reservations.index',
             'hasRole'   => 'Cliente',
         ],
         [
             'text'      => 'Consultar menú',
-            'url'       => '#',
+            'route'     => 'client.menus.index',
             'hasRole'   => 'Cliente',
         ],
 
@@ -312,11 +312,6 @@ return [
         ],
         [
             'text'      => 'Reservas',
-            'url'       => '#',
-            'hasRole'   => 'Administrador',
-        ],
-        [
-            'text'      => 'Empleados',
             'url'       => '#',
             'hasRole'   => 'Administrador',
         ],
