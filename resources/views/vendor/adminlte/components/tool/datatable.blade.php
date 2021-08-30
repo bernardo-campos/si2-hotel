@@ -39,6 +39,12 @@
 @push('js')
 <script>
 
+    @php
+        $config = array_merge($config,
+            ['language' => ['url' => "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"]]
+        );
+    @endphp
+
     $(() => {
         $('#{{ $id }}').DataTable( @json($config) );
     })
