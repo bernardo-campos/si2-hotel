@@ -26,8 +26,22 @@
 
         {{-- Email field --}}
         <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+            @if (App::environment('local'))
+                <div class="alert alert-info alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h6><i class="icon fas fa-info"></i> Atención!</h6>
+                  La aplicación está en modo <b>local</b>, ingresá sin contraseña
+                </div>
+                <select class="form-control" name="email" onchange="document.querySelector('#password').value='randomstring'">
+                    <option value=""></option>
+                    @foreach (App\Models\User::all() as $user)
+                        <option value="{{ $user->email }}">{{ $user->email }} ({{ $user->roles->pluck('name')->join(', ')}})</option>
+                    @endforeach
+                </select>
+            @else
+                <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                       value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+            @endif
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -41,8 +55,8 @@
         </div>
 
         {{-- Password field --}}
-        <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+        <div class="input-group mb-3 @if (App::environment('local')) d-none @endif">
+            <input id="password" type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
                    placeholder="{{ __('adminlte::adminlte.password') }}">
             <div class="input-group-append">
                 <div class="input-group-text">
