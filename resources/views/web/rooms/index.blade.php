@@ -7,7 +7,52 @@
 @stop
 
 @section('content')
-    Listado de habitaciones
+
+    <div class="card">
+        <div class="card-header">
+            Buscar habitaciones
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <x-adminlte-input
+                    name="beds"
+                    label="Número de camas"
+                    placeholder="0"
+                    type="number"
+                    igroup-size="sm"
+                    fgroup-class="col-sm-4 col-md-3"
+                    min=1 max=10>
+                </x-adminlte-input>
+
+                <x-adminlte-input
+                    name="from"
+                    label="Desde"
+                    type="date"
+                    fgroup-class="col-sm-4 col-md-3"
+                    igroup-size="sm">
+                </x-adminlte-input>
+
+                <x-adminlte-input
+                    name="to"
+                    label="Hasta"
+                    type="date"
+                    fgroup-class="col-sm-4 col-md-3"
+                    igroup-size="sm">
+                </x-adminlte-input>
+
+            </div>
+        </div>
+        <div class="card-footer d-flex">
+            <x-adminlte-button class="ml-auto"
+                label="Buscar"
+                theme="primary"
+                icon="fas fa-search"
+                type="submit"
+            />
+        </div>
+    </div>
+
 @stop
 
 @push('js')
