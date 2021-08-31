@@ -268,28 +268,17 @@ return [
         ['header' => 'ÁREA ENCARGADO', 'hasRole' => 'Encargado'],
         [
             'text'      => 'Clientes',
+            'route'     => 'attendant.clients.index',
             'hasRole'   => 'Encargado',
-            'submenu'   => [
-                [
-                    'text'      => 'Listado',
-                    'route'     => 'attendant.clients.index',
-                    'classes'   => 'pl-4'
-                ],
-                [
-                    'text'      => 'Registrar',
-                    'route'     => 'attendant.clients.create',
-                    'classes'   => 'pl-4'
-                ],
-            ]
         ],
         [
             'text'      => 'Reservas',
-            'route'     => 'attendant.rooms.index',
+            'route'     => 'attendant.reservations.index',
             'hasRole'   => 'Encargado',
         ],
         [
             'text'      => 'Habitaciones',
-            'route'     => 'attendant.reservations.index',
+            'route'     => 'attendant.rooms.index',
             'hasRole'   => 'Encargado',
         ],
         [
