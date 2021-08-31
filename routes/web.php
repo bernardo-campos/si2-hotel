@@ -23,12 +23,12 @@ use App\Http\Controllers\Web\ServiceController as WebService;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 })->name('welcome');
 
 Route::get('/home', function () {
     return view('home');
-})->name('home');
+})->name('home')->middleware('auth');
 
 
 // Web (public) routes
