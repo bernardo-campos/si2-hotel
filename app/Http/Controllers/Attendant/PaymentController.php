@@ -11,4 +11,9 @@ class PaymentController extends Controller
     {
         return view('attendant.payments.index');
     }
+
+    public function create()
+    {
+        return view('attendant.payments.create');
+    }
 }

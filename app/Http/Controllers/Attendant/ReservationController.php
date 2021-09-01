@@ -11,4 +11,9 @@ class ReservationController extends Controller
     {
         return view('attendant.reservations.index');
     }
+
+    public function create()
+    {
+        return view('attendant.reservations.create');
+    }
 }

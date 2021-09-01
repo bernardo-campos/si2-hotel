@@ -65,8 +65,11 @@ Route::group([
         Route::get('/clientes', [AttendantClient::class, 'index'])->name('clients.index');
         Route::get('/clientes/crear', [AttendantClient::class, 'create'])->name('clients.create');
         Route::get('/habitaciones', [AttendantRoom::class, 'index'])->name('rooms.index');
+        Route::get('/habitaciones/crear', [AttendantRoom::class, 'create'])->name('rooms.create');
         Route::get('/reservas', [AttendantReservation::class, 'index'])->name('reservations.index');
+        Route::get('/reservas/crear', [AttendantReservation::class, 'create'])->name('reservations.create');
         Route::get('/pagos', [AttendantPayment::class, 'index'])->name('payments.index');
+        Route::get('/pagos/crear', [AttendantPayment::class, 'create'])->name('payments.create');
     }
 );
 
