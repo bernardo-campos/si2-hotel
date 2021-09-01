@@ -82,9 +82,13 @@ Route::group([
     function() {
 
         Route::get('/menus', [AdminMenu::class, 'index'])->name('menus.index');
+        Route::get('/menus/create', [AdminMenu::class, 'create'])->name('menus.create');
         Route::get('/reservas', [AdminReservation::class, 'index'])->name('reservations.index');
+        Route::get('/reservas/create', [AdminReservation::class, 'create'])->name('reservations.create');
         Route::get('/empleados', [AdminEmployee::class, 'index'])->name('employees.index');
+        Route::get('/empleados/crear', [AdminEmployee::class, 'create'])->name('employees.create');
         Route::get('/habitaciones', [AdminRoom::class, 'index'])->name('rooms.index');
+        Route::get('/habitaciones/crear', [AdminRoom::class, 'create'])->name('rooms.create');
 
         Route::group(['as' => 'reports.', 'prefix' => 'informes'], function() {
             Route::get('/empleados', [InformController::class, 'employees'])->name('employees');

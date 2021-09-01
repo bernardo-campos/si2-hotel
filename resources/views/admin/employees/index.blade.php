@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="d-flex">
         <h1 class="m-0 text-dark">Empleados</h1>
-        <a href="javascript:void(0)" class="ml-auto">
+        <a href="{{ route('admin.employees.create') }}" class="ml-auto">
             <x-adminlte-button label="Agregar" theme="success" icon="fas fa-plus"/>
         </a>
     </div>

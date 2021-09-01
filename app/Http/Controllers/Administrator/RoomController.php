@@ -11,4 +11,9 @@ class RoomController extends Controller
     {
         return view('admin.rooms.index');
     }
+
+    public function create()
+    {
+        return view('admin.rooms.create');
+    }
 }

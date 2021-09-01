@@ -11,4 +11,9 @@ class ReservationController extends Controller
     {
         return view('admin.reservations.index');
     }
+
+    public function create()
+    {
+        return view('admin.reservations.create');
+    }
 }

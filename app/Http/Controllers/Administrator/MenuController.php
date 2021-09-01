@@ -11,4 +11,9 @@ class MenuController extends Controller
     {
         return view('admin.menus.index');
     }
+
+    public function create()
+    {
+        return view('admin.menus.create');
+    }
 }
