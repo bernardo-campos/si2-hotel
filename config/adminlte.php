@@ -269,21 +269,25 @@ return [
         [
             'text'      => 'Clientes',
             'route'     => 'attendant.clients.index',
+            'active'    => ['encargado/clientes/*'],
             'hasRole'   => 'Encargado',
         ],
         [
             'text'      => 'Reservas',
             'route'     => 'attendant.reservations.index',
+            'active'    => ['encargado/reservas/*'],
             'hasRole'   => 'Encargado',
         ],
         [
             'text'      => 'Habitaciones',
             'route'     => 'attendant.rooms.index',
+            'active'    => ['encargado/habitaciones/*'],
             'hasRole'   => 'Encargado',
         ],
         [
             'text'      => 'Pagos',
             'route'     => 'attendant.payments.index',
+            'active'    => ['encargado/pagos/*'],
             'hasRole'   => 'Encargado',
         ],
 
@@ -292,21 +296,25 @@ return [
         [
             'text'      => 'Empleados',
             'route'     => 'admin.employees.index',
+            'active'    => ['administrador/empleados/*'],
             'hasRole'   => 'Administrador',
         ],
         [
             'text'      => 'Habitaciones',
             'route'     => 'admin.rooms.index',
+            'active'    => ['administrador/habitaciones/*'],
             'hasRole'   => 'Administrador',
         ],
         [
             'text'      => 'Reservas',
             'route'     => 'admin.reservations.index',
+            'active'    => ['administrador/reservas/*'],
             'hasRole'   => 'Administrador',
         ],
         [
             'text'      => 'Menús',
             'route'     => 'admin.menus.index',
+            'active'    => ['administrador/menus/*'],
             'hasRole'   => 'Administrador',
         ],
         [
