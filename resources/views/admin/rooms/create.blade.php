@@ -8,49 +8,63 @@
 
 @section('content')
 
-    <form class="form-horizontal" onsubmit="alert('submit'); return false;">
-        @csrf @method('PUT')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form class="form-horizontal" action="{{ route('admin.rooms.store') }}" method="post">
+        @csrf
         <div class="card">
             <div class="card-body">
                 <div class="row">
 
                     <x-adminlte-input
                         name="number"
-                        type="number"
-                        min="1"
+                        type="text"
                         label="Nº de habitación"
                         fgroup-class="col-md-6"
+                        value="{{ old('number') }}"
                     />
 
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input id="tv" class="form-check-input" type="checkbox">
-                            <label class="form-check-label" for="tv">TV</label>
+                            <input name="has_tv" id="has_tv" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="has_tv">TV</label>
                         </div>
                         <div class="form-check">
-                            <input id="frigobar" class="form-check-input" type="checkbox">
-                            <label class="form-check-label" for="frigobar">Frigobar</label>
+                            <input name="has_minibar" id="has_minibar" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="has_minibar">Frigobar</label>
                         </div>
                         <div class="form-check">
-                            <input id="ac" class="form-check-input" type="checkbox">
-                            <label class="form-check-label" for="ac">AC</label>
+                            <input name="has_ac" id="has_ac" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="has_ac">AC</label>
                         </div>
                     </div>
 
                     <x-adminlte-input
-                        name="camas"
+                        name="beds"
                         type="number"
                         min="1"
+                        step="1"
                         label="Cantidad de camas"
                         fgroup-class="col-md-6"
+                        value="{{ old('beds') }}"
                     />
 
                     <x-adminlte-input
-                        name="precio"
+                        name="price"
                         type="number"
                         min="1"
+                        step="0.01"
                         label="Precio por noche (AR$)"
                         fgroup-class="col-md-6"
+                        value="{{ old('price') }}"
                     />
 
                 </div>

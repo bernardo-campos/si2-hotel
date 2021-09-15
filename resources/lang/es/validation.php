@@ -147,13 +147,21 @@ return [
     */
 
     'attributes' => [
-        'dni' => 'DNI',
-        'password' => 'contraseña',
-        'name' => 'Nombre',
-        'phone' => 'Celular',
-        'email' => 'Correo electrónico',
-        'date' => 'Fecha',
-        'description' => 'Descripción'
+        'beds'          => 'Número de camas',
+        'cellphone'     => 'Celular',
+        'date'          => 'Fecha',
+        'description'   => 'Descripción',
+        'dni'           => 'DNI',
+        'email'         => 'Correo electrónico',
+        'has_ac'        => 'Aire Acondicionado',
+        'has_minibar'   => 'Frigobar',
+        'has_tv'        => 'TV',
+        'name'          => 'Nombre',
+        'number'        => 'Número',
+        'password'      => 'contraseña',
+        'phone'         => 'Teléfono',
+        'price'         => 'Precio',
+        'stauts'        => 'Estado',
     ],
 
 ];

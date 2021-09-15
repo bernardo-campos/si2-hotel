@@ -89,6 +89,7 @@ Route::group([
         Route::get('/empleados/crear', [AdminEmployee::class, 'create'])->name('employees.create');
         Route::get('/habitaciones', [AdminRoom::class, 'index'])->name('rooms.index');
         Route::get('/habitaciones/crear', [AdminRoom::class, 'create'])->name('rooms.create');
+        Route::post('/habitaciones', [AdminRoom::class, 'store'])->name('rooms.store');
 
         Route::group(['as' => 'reports.', 'prefix' => 'informes'], function() {
             Route::get('/empleados', [InformController::class, 'employees'])->name('employees');

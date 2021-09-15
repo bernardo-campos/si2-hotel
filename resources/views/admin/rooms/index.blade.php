@@ -14,7 +14,7 @@
 @php
     $heads = [
         'Id',
-        'Nº',
+        'Nº hab.',
         'TV',
         'Frigobar',
         'AC',
@@ -30,11 +30,15 @@
             <div class="row">
 
                 <x-adminlte-datatable id="table1" :heads="$heads">
-                    @foreach([] as $row)
+                    @foreach($rooms as $room)
                         <tr>
-                            @foreach($row as $cell)
-                                <td>{!! $cell !!}</td>
-                            @endforeach
+                            <td>{{ $room->id }}</td>
+                            <td>{{ $room->number }}</td>
+                            <td>{{ $room->has_tv }}</td>
+                            <td>{{ $room->has_minibar }}</td>
+                            <td>{{ $room->has_ac }}</td>
+                            <td>{{ $room->beds }}</td>
+                            <td>{{ $room->price }}</td>
                         </tr>
                     @endforeach
                 </x-adminlte-datatable>
