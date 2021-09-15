@@ -19,6 +19,16 @@
         @yield('title_postfix', config('adminlte.title_postfix', ''))
     </title>
 
+
+    {{-- TODO: agregar al estilo de datatables --}}
+    <style type="text/css">
+        .dataTables_info {
+            white-space: pre-wrap!important;
+            text-align: left!important;
+        }
+    </style>
+
+
     {{-- Custom stylesheets (pre AdminLTE) --}}
     @yield('adminlte_css_pre')
 
