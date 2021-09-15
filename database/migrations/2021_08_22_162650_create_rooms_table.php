@@ -15,6 +15,13 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->string('number', 5);
+            $table->boolean('has_tv')->default(true);
+            $table->boolean('has_minibar')->default(true);
+            $table->boolean('has_ac')->default(true);
+            $table->unsignedTinyInteger('beds')->default(1);
+            $table->string('stauts')->nullable();
+            $table->float('price');
             $table->timestamps();
         });
     }
