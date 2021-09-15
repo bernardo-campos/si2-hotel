@@ -13,6 +13,7 @@
 
 @php
     $heads = [
+        '',
         'Id',
         'Nº hab.',
         'TV',
@@ -32,6 +33,7 @@
                 <x-adminlte-datatable id="table1" :heads="$heads">
                     @foreach($rooms as $room)
                         <tr>
+                            <td></td>
                             <td>{{ $room->id }}</td>
                             <td>{{ $room->number }}</td>
                             <td>{{ $room->has_tv }}</td>

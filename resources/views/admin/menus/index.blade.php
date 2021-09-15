@@ -12,6 +12,7 @@
 @stop
 @php
     $heads = [
+        '',
         ['label' => 'Id', 'width' => 8],
         'Plato',
         'Precio (AR$)',
@@ -28,6 +29,7 @@
                 <x-adminlte-datatable id="table1" :heads="$heads">
                     @foreach([] as $row)
                         <tr>
+                            <td></td>
                             @foreach($row as $cell)
                                 <td>{!! $cell !!}</td>
                             @endforeach
