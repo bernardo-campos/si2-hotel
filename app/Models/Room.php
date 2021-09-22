@@ -27,4 +27,9 @@ class Room extends Model
     {
         return $this->attributes['has_ac'] ? 'Si' : 'No';
     }
+
+    public function getPeopleAttribute()
+    {
+        return $this->attributes['single_beds'] + 2 * $this->attributes['double_beds'];
+    }
 }

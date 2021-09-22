@@ -16,8 +16,18 @@
             <div class="row">
 
                 <x-adminlte-input
-                    name="beds"
-                    label="Número de camas"
+                    name="double_beds"
+                    label="Número de camas dobles"
+                    placeholder="0"
+                    type="number"
+                    igroup-size="sm"
+                    fgroup-class="col-sm-4 col-md-3"
+                    min=1 max=10>
+                </x-adminlte-input>
+
+                <x-adminlte-input
+                    name="sinble_beds"
+                    label="Número de camas simples"
                     placeholder="0"
                     type="number"
                     igroup-size="sm"

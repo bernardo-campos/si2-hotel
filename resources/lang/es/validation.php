@@ -151,6 +151,7 @@ return [
         'cellphone'     => 'Celular',
         'date'          => 'Fecha',
         'description'   => 'Descripción',
+        'double_beds'   => 'Número de camas dobles',
         'dni'           => 'DNI',
         'email'         => 'Correo electrónico',
         'has_ac'        => 'Aire Acondicionado',
@@ -161,6 +162,7 @@ return [
         'password'      => 'contraseña',
         'phone'         => 'Teléfono',
         'price'         => 'Precio',
+        'single_beds'   => 'Número de camas simples',
         'stauts'        => 'Estado',
     ],
 

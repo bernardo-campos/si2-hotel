@@ -38,11 +38,23 @@
                     </div>
 
                     <x-adminlte-input
-                        name="camas"
+                        name="single_beds"
                         type="number"
-                        min="1"
-                        label="Cantidad de camas"
+                        min="0"
+                        step="1"
+                        label="Cantidad de camas simples"
                         fgroup-class="col-md-6"
+                        value="{{ old('single_beds') }}"
+                    />
+
+                    <x-adminlte-input
+                        name="double_beds"
+                        type="number"
+                        min="0"
+                        step="1"
+                        label="Cantidad de camas dobles"
+                        fgroup-class="col-md-6"
+                        value="{{ old('double_beds') }}"
                     />
 
                     <x-adminlte-input

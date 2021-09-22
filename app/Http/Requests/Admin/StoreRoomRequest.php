@@ -43,7 +43,8 @@ class StoreRoomRequest extends FormRequest
             'has_tv' => 'boolean',
             'has_minibar' => 'boolean',
             'has_ac' => 'boolean',
-            'beds' => 'required|integer|numeric|between:1,250',
+            'single_beds' => 'required|integer|numeric|between:0,10',
+            'double_beds' => 'required|integer|numeric|between:0,6',
             'stauts' => 'nullable|string',
             'price' => 'numeric',
         ];

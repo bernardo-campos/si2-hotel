@@ -39,8 +39,13 @@
                             <td>{{ $room->has_tv }}</td>
                             <td>{{ $room->has_minibar }}</td>
                             <td>{{ $room->has_ac }}</td>
-                            <td>{{ $room->beds }}</td>
-                            <td>{{ $room->price }}</td>
+                            <td class="text-sm">
+                                Simples: {{ $room->single_beds }}
+                                <br>
+                                Dobles: {{ $room->double_beds }}
+                                <br> Total: {{ $room->people }} personas
+                            </td>
+                            <td>$ {{ $room->price }}</td>
                         </tr>
                     @endforeach
                 </x-adminlte-datatable>
