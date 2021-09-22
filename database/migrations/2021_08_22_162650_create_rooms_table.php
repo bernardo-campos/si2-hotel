@@ -21,7 +21,6 @@ class CreateRoomsTable extends Migration
             $table->boolean('has_ac')->default(true);
             $table->unsignedTinyInteger('double_beds')->default(0);
             $table->unsignedTinyInteger('single_beds')->default(0);
-            $table->string('stauts')->nullable();
             $table->float('price');
             $table->timestamps();
         });
