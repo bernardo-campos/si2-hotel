@@ -34,15 +34,30 @@
 
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input name="has_tv" id="has_tv" class="form-check-input" type="checkbox">
+                            <input
+                                name="has_tv"
+                                id="has_tv"
+                                class="form-check-input"
+                                {{ old('has_tv') ? 'checked=""' : '' }}
+                                type="checkbox">
                             <label class="form-check-label" for="has_tv">TV</label>
                         </div>
                         <div class="form-check">
-                            <input name="has_minibar" id="has_minibar" class="form-check-input" type="checkbox">
+                            <input
+                                name="has_minibar"
+                                id="has_minibar"
+                                class="form-check-input"
+                                {{ old('has_minibar') ? 'checked=""' : '' }}
+                                type="checkbox">
                             <label class="form-check-label" for="has_minibar">Frigobar</label>
                         </div>
                         <div class="form-check">
-                            <input name="has_ac" id="has_ac" class="form-check-input" type="checkbox">
+                            <input
+                                name="has_ac"
+                                id="has_ac"
+                                class="form-check-input"
+                                {{ old('has_ac') ? 'checked=""' : '' }}
+                                type="checkbox">
                             <label class="form-check-label" for="has_ac">AC</label>
                         </div>
                     </div>

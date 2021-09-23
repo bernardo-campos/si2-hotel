@@ -28,6 +28,7 @@ class StoreRoomRequest extends FormRequest
             'has_tv' => $this->boolean('has_tv'),
             'has_minibar' => $this->boolean('has_minibar'),
             'has_ac' => $this->boolean('has_ac'),
+            'total_beds' => $this->single_beds + $this->double_beds,
         ]);
     }
 
@@ -39,14 +40,22 @@ class StoreRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'string|max:5',
+            'number' => 'string|unique:rooms|max:5',
             'has_tv' => 'boolean',
             'has_minibar' => 'boolean',
             'has_ac' => 'boolean',
             'single_beds' => 'required|integer|numeric|between:0,10',
             'double_beds' => 'required|integer|numeric|between:0,6',
+            'total_beds' => 'integer|numeric|gt:0',
             'stauts' => 'nullable|string',
             'price' => 'numeric',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'total_beds.gt' => 'El número total de camas debe ser mayor que 0',
         ];
     }
 }
