@@ -13,6 +13,22 @@
 @push('js')
 <script>
 
+    @php
+        $config = array_merge($config, [
+            "locale" => [
+                "format" => "DD/MM/YYYY",
+                "applyLabel" => "Aplicar",
+                "cancelLabel" => "Cancelar",
+                "fromLabel" => "Desde",
+                "toLabel" => "Hasta",
+                "customRangeLabel" => "Personalizar",
+                "weekLabel" => "S",
+                "daysOfWeek" => ["Do","Lu","Ma","Mi","Ju","Vi","Sá"],
+                "monthNames" => ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+            ]
+        ]);
+    @endphp
+
     $(() => {
         let usrCfg = _AdminLTE_DateRange.parseCfg( @json($config) );
 

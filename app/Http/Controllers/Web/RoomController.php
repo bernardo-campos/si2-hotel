@@ -9,6 +9,8 @@ class RoomController extends Controller
 {
     public function index()
     {
-        return view('web.rooms.index');
+        return view('web.rooms.index', [
+            'rooms' => []
+        ]);
     }
 }
