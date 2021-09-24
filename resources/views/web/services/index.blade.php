@@ -2,8 +2,16 @@
 
 @section('title', 'Servicios')
 
+@section('plugins.qrCode', true)
+
 @section('content_header')
     <h1 class="m-0 text-dark">Servicios ofrecidos</h1>
+    <x-adminlte-button class="bg-teal"
+        icon="fas fa-qrcode mr-2"
+        label="Ver código QR"
+        data-toggle="modal"
+        data-target="#modalQr"
+    />
 @stop
 
 @php
@@ -64,10 +72,24 @@
         </div>
     </div>
 
+    <x-adminlte-modal id="modalQr" title="Código QR" size="md" theme="teal" icon="fas fa-qrcode" with-footer="false" v-centered >
+        <p>Utiliza este código QR para acceder al menú desde tu celular</p>
+        <div id="qrcode"></div>
+        <x-slot name="footerSlot"></x-slot>
+    </x-adminlte-modal>
+
 @stop
 
 @push('js')
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"), window.location.href);
+</script>
 @endpush
 
 @push('css')
+<style type="text/css">
+    .modal-body img {
+        margin: auto;
+    }
+</style>
 @endpush
