@@ -125,7 +125,7 @@ return [
     'classes_brand' => '',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
-    'classes_content_header' => 'container-fluid d-flex justify-content-between',
+    'classes_content_header' => 'container d-flex justify-content-between',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
