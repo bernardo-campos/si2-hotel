@@ -3,9 +3,7 @@
 @section('title', 'Menús')
 
 @section('content_header')
-    <div class="d-flex">
-        <h1 class="m-0 text-dark">Menús</h1>
-    </div>
+    <h1 class="m-0 text-dark">Menús</h1>
 @stop
 @php
     $heads = [

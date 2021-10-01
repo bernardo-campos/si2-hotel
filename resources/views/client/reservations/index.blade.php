@@ -3,9 +3,7 @@
 @section('title', 'Mis Reservas')
 
 @section('content_header')
-    <div class="d-flex">
-        <h1 class="m-0 text-dark">Mis Reservas</h1>
-    </div>
+    <h1 class="m-0 text-dark">Mis Reservas</h1>
 @stop
 
 @php

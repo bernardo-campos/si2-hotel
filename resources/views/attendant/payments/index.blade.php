@@ -3,12 +3,10 @@
 @section('title', 'Pagos')
 
 @section('content_header')
-    <div class="d-flex">
-        <h1 class="m-0 text-dark">Pagos</h1>
-        <a href="{{ route('attendant.payments.create') }}" class="ml-auto">
-            <x-adminlte-button label="Agregar" theme="success" icon="fas fa-plus"/>
-        </a>
-    </div>
+    <h1 class="m-0 text-dark">Pagos</h1>
+    <a href="{{ route('attendant.payments.create') }}" class="ml-auto">
+        <x-adminlte-button label="Agregar" theme="success" icon="fas fa-plus"/>
+    </a>
 @stop
 
 @php
