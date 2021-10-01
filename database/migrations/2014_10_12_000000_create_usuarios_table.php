@@ -16,12 +16,7 @@ class CreateUsuariosTable extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('dni', 8)->unique();
-            $table->string('nombre');                   // name
-            $table->string('apellido')->nullable();     // surname
-            $table->string('telefono')->nullable();     // phone
-            $table->string('celular')->nullable();      // celphone
-            $table->string('domicilio')->nullable();    // address
-            $table->date('fecha_nacimiento')->nullable();  // birthdate
+            $table->foreignId('persona_id')->constrained();
             $table->string('email')->unique();          // email
             // $table->timestamp('email_verified_at')->nullable(); // email_verified_at
             $table->string('contraseña');               // password
