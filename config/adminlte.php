@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'layout_topnav' => null,
+    'layout_topnav' => true,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
@@ -226,11 +226,6 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
