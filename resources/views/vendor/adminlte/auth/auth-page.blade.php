@@ -9,6 +9,31 @@
 @endif
 
 @section('adminlte_css')
+    <style type="text/css">
+        .{{ $auth_type ?? 'login' }}-page a{
+            color: #0a0e12;
+        }
+        .{{ $auth_type ?? 'login' }}-page {
+            background-image: url('/img/bg-hotel-min.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position-y: center;
+            background-blend-mode: screen;
+            background-color: darkslategrey;
+        }
+        :is(.{{ $auth_type ?? 'login' }}-box) .card > :is( [class^="card-"] ) {
+            background-color: #ffffffaa;
+        }
+        :is(.{{ $auth_type ?? 'login' }}-box) .card {
+            background-color: #ffffff00;
+        }
+        .{{ $auth_type ?? 'login' }}-logo img {
+            display: none;
+        }
+        .{{ $auth_type ?? 'login' }}-box :is(.form-control, .input-group-text) {
+            border-color: darkgray!important;
+        }
+    </style>
     @stack('css')
     @yield('css')
 @stop
