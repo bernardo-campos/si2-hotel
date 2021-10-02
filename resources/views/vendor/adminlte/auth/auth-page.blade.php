@@ -1,4 +1,4 @@
-@extends('adminlte::master')
+@extends('adminlte::page')
 
 @php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home') )
 
@@ -10,10 +10,12 @@
 
 @section('adminlte_css')
     <style type="text/css">
-        .{{ $auth_type ?? 'login' }}-page a{
-            color: #0a0e12;
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .{{ $auth_type ?? 'login' }}-page {
+        .content-wrapper {
             background-image: url('/img/bg-hotel-min.jpg');
             background-repeat: no-repeat;
             background-size: cover;
@@ -27,9 +29,6 @@
         :is(.{{ $auth_type ?? 'login' }}-box) .card {
             background-color: #ffffff00;
         }
-        .{{ $auth_type ?? 'login' }}-logo img {
-            display: none;
-        }
         .{{ $auth_type ?? 'login' }}-box :is(.form-control, .input-group-text) {
             border-color: darkgray!important;
         }
@@ -38,18 +37,8 @@
     @yield('css')
 @stop
 
-@section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop
-
-@section('body')
+@section('content')
     <div class="{{ $auth_type ?? 'login' }}-box">
-
-        {{-- Logo --}}
-        <div class="{{ $auth_type ?? 'login' }}-logo">
-            <a href="{{ $dashboard_url }}">
-                <img src="{{ asset(config('adminlte.logo_img')) }}" height="50">
-                {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
-            </a>
-        </div>
 
         {{-- Card Box --}}
         <div class="card {{ config('adminlte.classes_auth_card', 'card-outline card-primary') }}">
