@@ -230,13 +230,13 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        // Todos los roles o No logueado
         [
-            'text'  => 'Mis datos',
-            'route' => 'profile.edit',
-            'icon'  => 'fas fa-fw fa-user-edit',
+            'text'      => 'Mis datos',
+            'route'     => 'profile.edit',
+            'icon'      => 'fas fa-fw fa-user-edit',
+            'hasRole'   => 'Administrador|Encargado|Cliente'
         ],
+        // Todos los roles o No logueado
         [
             'text'        => 'Consultar servicios',
             'route'       => 'web.services.index',
