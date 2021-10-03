@@ -58,12 +58,14 @@ class RoomController extends Controller
     public function index()
     {
         $groupedRoomsCollection = null;
+        $total_days = 0;
 
         if (request()->has(['capacity', 'rooms', 'range'])) {
             $range = array_map( function ($d) {
-                    return \Carbon\Carbon::createFromFormat('d/m/Y', $d)->toDateString();
+                    return \Carbon\Carbon::createFromFormat('d/m/Y', $d);//->toDateString();
                 }, explode(' - ', request()->range)
             );
+            $total_days = $range[1]->diffInDays($range[0]) + 1;
 
             $groupedRoomsCollection = $this->searchRooms(
                 request()->capacity,
@@ -76,6 +78,7 @@ class RoomController extends Controller
 
         return view('web.rooms.index', [
             'results' => $groupedRoomsCollection,
+            'total_days' => $total_days,
         ]);
     }
 }
