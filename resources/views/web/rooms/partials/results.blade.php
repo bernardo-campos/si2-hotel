@@ -23,7 +23,7 @@
                             @foreach ($roomGroup->rooms as $room)
                                 Habitación #{{ $loop->iteration }} (Nº {{ $room->number }})
                                 <br>
-                                ({{ $room->double_beds }} cama doble y {{ $room->single_beds }} cama simple)
+                                ({{ $room->renderBeds() }})
                                 @if(!$loop->last)<hr>@endif
                             @endforeach
                         </td>
