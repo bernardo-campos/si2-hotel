@@ -15,8 +15,23 @@
         <div class="row">
 
             <x-adminlte-datatable id="table1" :heads="$heads">
-                @foreach($results as $room)
+                @foreach($results as $roomGroup)
                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            @foreach ($roomGroup->rooms as $room)
+                                Habitación #{{ $loop->iteration }} (Nº {{ $room->number }})
+                                <br>
+                                ({{ $room->double_beds }} cama doble y {{ $room->single_beds }} cama simple)
+                                @if(!$loop->last)<hr>@endif
+                            @endforeach
+                        </td>
+                        <td>
+                            ${{ $roomGroup->total_price }}/noche
+                        </td>
+                    </tr>
+                    {{-- <tr>
                         <td></td>
                         <td>{{ $room->id }}</td>
                         <td>{{ $room->number }}</td>
@@ -30,7 +45,7 @@
                             <br> Total: {{ $room->people }} personas
                         </td>
                         <td>$ {{ $room->price }}</td>
-                    </tr>
+                    </tr> --}}
                 @endforeach
             </x-adminlte-datatable>
 

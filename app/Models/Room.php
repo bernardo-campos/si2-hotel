@@ -11,8 +11,15 @@ class Room extends Model
 
     protected $guarded = ['id'];
 
+
+    // TODO: implement
+    public function hasReservationBetween($from, $to) {
+        return false;
+    }
+
     // Attributes
     //...
+
 
     public function getPeopleAttribute()
     {
