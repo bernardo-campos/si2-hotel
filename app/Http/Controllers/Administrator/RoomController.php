@@ -27,4 +27,20 @@ class RoomController extends Controller
 
         return redirect()->route('admin.rooms.index')->with('success', 'Habitación creada');
     }
+
+    public function edit(Room $room)
+    {
+        return view('admin.rooms.edit', [
+            'room' => $room
+        ]);
+    }
+
+    public function update(StoreRoomRequest $request, Room $room)
+    {
+        $room->fill( $request->validated() );
+
+        $room->save();
+
+        return redirect()->route('admin.rooms.index')->with('success', 'Habitación actualizada');
+    }
 }

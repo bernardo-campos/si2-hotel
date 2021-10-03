@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRoomRequest extends FormRequest
 {
@@ -39,8 +40,13 @@ class StoreRoomRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->room);
         return [
-            'number' => 'string|unique:rooms|max:5',
+            'number' => [
+                'string',
+                'max:5',
+                Rule::unique('rooms')->ignore(optional($this->room)->id),
+            ],
             'has_tv' => 'boolean',
             'has_minibar' => 'boolean',
             'has_ac' => 'boolean',

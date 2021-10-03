@@ -12,21 +12,7 @@ class Room extends Model
     protected $guarded = ['id'];
 
     // Attributes
-
-    public function getHasTvAttribute()
-    {
-        return $this->attributes['has_tv'] ? 'Si' : 'No';
-    }
-
-    public function getHasMinibarAttribute()
-    {
-        return $this->attributes['has_minibar'] ? 'Si' : 'No';
-    }
-
-    public function getHasAcAttribute()
-    {
-        return $this->attributes['has_ac'] ? 'Si' : 'No';
-    }
+    //...
 
     public function getPeopleAttribute()
     {

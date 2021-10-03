@@ -14,11 +14,13 @@
         '',
         'Id',
         'Nº hab.',
-        'TV',
-        'Frigobar',
-        'AC',
+        'TV / Frigobar / AC',
         '#camas',
         'AR$/noche',
+        '',
+    ];
+    $config = [
+        'columns' => [null,null,null,null,null,null, ['orderable' => false]],
     ];
 @endphp
 
@@ -28,15 +30,19 @@
         <div class="card-body">
             <div class="row">
 
-                <x-adminlte-datatable id="table1" :heads="$heads">
+                <x-adminlte-datatable id="table1" :heads="$heads" :config="$config">
                     @foreach($rooms as $room)
                         <tr>
                             <td></td>
                             <td>{{ $room->id }}</td>
                             <td>{{ $room->number }}</td>
-                            <td>{{ $room->has_tv }}</td>
-                            <td>{{ $room->has_minibar }}</td>
-                            <td>{{ $room->has_ac }}</td>
+                            <td>
+                                <div class="d-flex flex-column text-sm">
+                                    <span class="{{ $room->has_tv ? 'available' : 'unavailable'}}">TV</span>
+                                    <span class="{{ $room->has_minibar ? 'available' : 'unavailable'}}">Frigobar</span>
+                                    <span class="{{ $room->has_ac ? 'available' : 'unavailable'}}">A.Ac</span>
+                                </div>
+                            </td>
                             <td class="text-sm">
                                 Simples: {{ $room->single_beds }}
                                 <br>
@@ -44,6 +50,9 @@
                                 <br> Total: {{ $room->people }} personas
                             </td>
                             <td>$ {{ $room->price }}</td>
+                            <td>
+                                <a href="{{ route('admin.rooms.edit', $room) }}" class="btn btn-sm btn-warning py-0 px-1"><i class="fa fa-edit"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                 </x-adminlte-datatable>
@@ -58,4 +67,13 @@
 @endpush
 
 @push('css')
+<style type="text/css">
+    .available {
+
+    }
+    .unavailable {
+        text-decoration: line-through;
+        color: gray;
+    }
+</style>
 @endpush

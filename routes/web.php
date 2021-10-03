@@ -87,8 +87,11 @@ Route::group([
         Route::get('/reservas/create', [AdminReservation::class, 'create'])->name('reservations.create');
         Route::get('/empleados', [AdminEmployee::class, 'index'])->name('employees.index');
         Route::get('/empleados/crear', [AdminEmployee::class, 'create'])->name('employees.create');
+
         Route::get('/habitaciones', [AdminRoom::class, 'index'])->name('rooms.index');
         Route::get('/habitaciones/crear', [AdminRoom::class, 'create'])->name('rooms.create');
+        Route::get('/habitaciones/{room}/editar', [AdminRoom::class, 'edit'])->name('rooms.edit');
+        Route::put('/habitaciones/{room}', [AdminRoom::class, 'update'])->name('rooms.update');
         Route::post('/habitaciones', [AdminRoom::class, 'store'])->name('rooms.store');
 
         Route::group(['as' => 'reports.', 'prefix' => 'informes'], function() {
