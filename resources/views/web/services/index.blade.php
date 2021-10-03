@@ -91,5 +91,8 @@
     .modal-body img {
         margin: auto;
     }
+
+    @include('_styles.background')
+
 </style>
 @endpush

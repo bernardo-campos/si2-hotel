@@ -27,4 +27,7 @@
 @endpush
 
 @push('css')
+<style type="text/css">
+    @include('_styles.background')
+</style>
 @endpush

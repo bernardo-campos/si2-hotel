@@ -15,14 +15,9 @@
             align-items: center;
             justify-content: center;
         }
-        .content-wrapper {
-            background-image: url('/img/bg-hotel-min.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position-y: center;
-            background-blend-mode: screen;
-            background-color: darkslategrey;
-        }
+
+        @include('_styles.background')
+
         :is(.{{ $auth_type ?? 'login' }}-box) .card > :is( [class^="card-"] ) {
             background-color: #ffffffaa;
         }
