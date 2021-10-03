@@ -410,6 +410,16 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css',
                 ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css',
+                ],
             ],
         ],
         'Select2' => [

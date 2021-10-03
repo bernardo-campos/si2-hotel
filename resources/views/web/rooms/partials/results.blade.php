@@ -9,6 +9,7 @@
         'searching' => false,
         'paging' => false,
         'info' => false,
+        'select' => true,
         'columns' => [
             ['orderable' => false],
             ['orderable' => false],
@@ -24,13 +25,12 @@
     </div>
     <div class="card-body pt-0">
         <div class="row">
-
             @if($results->count())
             <x-adminlte-datatable id="table1" :heads="$heads" :config="$config">
                 @foreach($results as $roomGroup)
                     <tr>
                         <td></td>
-                        <td></td>
+                        <td class="select"></td>
                         <td>
                             @foreach ($roomGroup->rooms as $room)
                                 <div class="d-flex">
@@ -67,6 +67,11 @@
                     </tr>
                 @endforeach
             </x-adminlte-datatable>
+            <div class="d-flex col-12 my-3">
+                <button class="btn btn-primary ml-auto">
+                    Continuar
+                </button>
+            </div>
             @else
                 <div class="text-center m-auto pt-4">
                         <p>No encontramos resultados</p>
@@ -82,6 +87,19 @@
 <style type="text/css">
     #table1 {
         margin-top: 0!important;
+    }
+    tr.selected td.select:before {
+        content: 'Habitaciones seleccionadas:';
+        color: #28a783;
+        font-weight: bold;
+    }
+    tr:not(.selected) td.select:before {
+        content: 'Click para seleccionar';
+        font-size: small;
+        color: gray;
+    }
+    tr.selected {
+        background-color: #dcfff3!important;
     }
 </style>
 @endpush
