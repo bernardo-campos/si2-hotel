@@ -37,9 +37,7 @@ class RoomController extends Controller
         $group = collect();
 
         $rooms = Room::all()->filter(
-            fn ($room) =>
-                $room->people <= $capacity
-                && !$room->hasReservationBetween($range[0], $range[1])
+            fn ($room) => !$room->hasReservationBetween($range[0], $range[1])
         );
 
         $room_combinations = $this->makeCombi( $rooms->pluck('id'), $rooms_qty );
@@ -48,10 +46,8 @@ class RoomController extends Controller
             $group->push( new RoomCollection($combination) );
         }
 
-        // dd($group);
-
         return $group->filter(
-            fn ($groupItem) => $groupItem->capacity == $capacity
+            fn ($groupItem) => $capacity == $groupItem->min_capacity
         );
     }
 

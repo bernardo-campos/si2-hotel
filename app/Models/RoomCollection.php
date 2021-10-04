@@ -32,6 +32,16 @@ class RoomCollection extends Model
 
     public function getCapacityAttribute()
     {
-        return $this->rooms->reduce( fn($carry, $room) => $carry + $room->people, 0);
+        return $this->min_capacity;
+    }
+
+    public function getMinCapacityAttribute()
+    {
+        return $this->rooms->reduce( fn($carry, $room) => $carry + $room->min_capacity, 0);
+    }
+
+    public function getMaxCapacityAttribute()
+    {
+        return $this->rooms->reduce( fn($carry, $room) => $carry + $room->max_capacity, 0);
     }
 }

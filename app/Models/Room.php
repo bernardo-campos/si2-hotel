@@ -47,9 +47,18 @@ class Room extends Model
     // Attributes
     //...
 
+    public function getPeopleAttribute($value='')
+    {
+        return $this->max_capacity;
+    }
 
-    public function getPeopleAttribute()
+    public function getMaxCapacityAttribute()
     {
         return $this->attributes['single_beds'] + 2 * $this->attributes['double_beds'];
+    }
+
+    public function getMinCapacityAttribute()
+    {
+        return $this->attributes['single_beds'] + 1 * $this->attributes['double_beds'];
     }
 }
