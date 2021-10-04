@@ -26,9 +26,9 @@
     <div class="card-body pt-0">
         <div class="row">
             @if($results->count())
-            <x-adminlte-datatable id="table1" :heads="$heads" :config="$config">
+            <x-adminlte-datatable id="results" :heads="$heads" :config="$config">
                 @foreach($results as $roomGroup)
-                    <tr>
+                    <tr data-rooms="{{ $roomGroup->rooms->pluck('id')->join(',') }}">
                         <td></td>
                         <td class="select"></td>
                         <td>
@@ -67,11 +67,15 @@
                     </tr>
                 @endforeach
             </x-adminlte-datatable>
-            <div class="d-flex col-12 my-3">
-                <button class="btn btn-primary ml-auto">
+            <form class="d-flex col-12 my-3" action="{{ route('client.reservations.create') }}" method="post">
+                @csrf
+                <input type="hidden" name="rooms" value="">
+                <input type="hidden" name="from" value="{{ Str::of($from)->explode('/')->reverse()->join('-') }}">
+                <input type="hidden" name="to" value="{{ Str::of($to)->explode('/')->reverse()->join('-') }}">
+                <button id="btnReservation" class="btn btn-primary ml-auto" disabled="">
                     Continuar
                 </button>
-            </div>
+            </form>
             @else
                 <div class="text-center m-auto pt-4">
                         <p>No encontramos resultados</p>
@@ -106,9 +110,23 @@
 
 @push('js')
 <script type="text/javascript">
+$(document).ready(function () {
+
     // style number dot separator of thousand
     $('.price').each(function(i, value) {
         $(this).text( ($(this).text().replace(/\B(?=(\d{3})+(?!\d))/g, ".") ) )
     })
+
+    $.fn.DataTable.Api('#results').on( 'select', function ( e, dt, type, indexes ) {
+        let dataRooms = $(`#results tbody tr:nth-child(${indexes[0]+1})`).attr('data-rooms');
+        $('input[name="rooms"]').val(dataRooms)
+        $('#btnReservation').prop('disabled', false);
+    } );
+
+    $.fn.DataTable.Api('#results').on( 'deselect', function ( e, dt, type, indexes ) {
+        $('input[name="rooms"]').val('')
+        $('#btnReservation').prop('disabled', true);
+    } );
+});
 </script>
 @endpush

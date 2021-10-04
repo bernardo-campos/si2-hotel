@@ -20,6 +20,7 @@ use App\Http\Controllers\Administrator\InformController;
 
 use App\Http\Controllers\Web\RoomController as WebRoom;
 use App\Http\Controllers\Web\ServiceController as WebService;
+use App\Http\Controllers\Web\ReservationController as WebReservation;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -52,6 +53,9 @@ Route::group([
     function() {
         Route::get('/reservas', [ClientReservation::class, 'index'])->name('reservations.index');
         Route::get('/menus', [ClientMenu::class, 'index'])->name('menus.index');
+
+        Route::post('/reservando', [ClientReservation::class, 'create'])->name('reservations.create');
+        Route::post('/reservando/store', [ClientReservation::class, 'store'])->name('reservations.store');
     }
 );
 
