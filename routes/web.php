@@ -24,7 +24,9 @@ use App\Http\Controllers\Web\ReservationController as WebReservation;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    return auth()->check()
+        ? redirect()->route('home')
+        : view('welcome');;
 })->name('welcome');
 
 Route::get('/home', function () {
