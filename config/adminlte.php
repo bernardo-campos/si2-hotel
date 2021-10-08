@@ -502,6 +502,26 @@ return [
                 ]
             ],
         ],
+        'textillate' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/textillate/jquery.lettering.min.js'
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/textillate/jquery.textillate.min.js'
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/textillate/animate.min.css'
+                ],
+            ]
+        ]
     ],
 
     /*

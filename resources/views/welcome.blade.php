@@ -2,12 +2,14 @@
 
 @section('title', 'Bienvenido')
 
+@section('plugins.textillate', true)
+
 @section('content_header')
 @stop
 
 @section('content')
     <div class="row flex-column align-items-center h-100 pt-2">
-        <div class="display-2 font-google">Bienvenido</div>
+        <div class="display-2 font-google tlt anim-title">Bienvenido</div>
         <div style="
             background-image: url('{{ asset('img/logo.svg')  }}');
             background-repeat: no-repeat;
@@ -22,6 +24,29 @@
 @stop
 
 @push('js')
+<script type="text/javascript">
+    $(function ($) {
+        $('.anim-title').textillate({
+            loop: true,
+             in: {
+                effect: 'fadeInLeft',
+                delayScale: 1.5,
+                delay: 50,
+                sync: false,
+                shuffle: false,
+                reverse: false
+              },
+            out: {
+                effect: 'fadeOutRight',
+                delayScale: 1.5,
+                delay: 50,
+                sync: false,
+                shuffle: false,
+                reverse: false
+              },
+        });
+    })
+</script>
 @endpush
 
 @push('css')
