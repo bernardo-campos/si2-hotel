@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Reservation;
+use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -39,13 +41,21 @@ class Room extends Model
             : $txtDoubleBeds . $txtSingleBeds;
     }
 
-    // TODO: implement
-    public function hasReservationBetween($from, $to) {
-        return false;
+    public function isAvailableBetween($from, $to) {
+        $currentPeriod = CarbonPeriod::create($from, $to);
+        return
+            !$this->reservations->count()
+            ? true
+            : $this->reservations->every(
+                function ($reservation, $key) use ($currentPeriod) {
+                    $period = CarbonPeriod::create($reservation->checkin, $reservation->checkout);
+                    return !array_intersect($currentPeriod->toArray(), $period->toArray());
+                }
+        );
     }
 
-    // Attributes
-    //...
+
+    /* ---- Attributes ---- */
 
     public function getPeopleAttribute($value='')
     {
@@ -60,5 +70,11 @@ class Room extends Model
     public function getMinCapacityAttribute()
     {
         return $this->attributes['single_beds'] + 1 * $this->attributes['double_beds'];
+    }
+
+    /* ---- Relationships ---- */
+    public function reservations()
+    {
+        return $this->belongsToMany(Reservation::class, 'reservation_rooms');
     }
 }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Room;
 use App\Models\RoomCollection;
-use App\Http\Controllers\Controller;
+use \Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -37,7 +38,7 @@ class RoomController extends Controller
         $group = collect();
 
         $rooms = Room::all()->filter(
-            fn ($room) => !$room->hasReservationBetween($range[0], $range[1])
+            fn ($room) => $room->isAvailableBetween($range[0], $range[1])
         );
 
         $room_combinations = $this->makeCombi( $rooms->pluck('id'), $rooms_qty );
@@ -58,10 +59,10 @@ class RoomController extends Controller
 
         if (request()->has(['capacity', 'rooms', 'range'])) {
             $range = array_map( function ($d) {
-                    return \Carbon\Carbon::createFromFormat('d/m/Y', $d);//->toDateString();
+                    return Carbon::createFromFormat('d/m/Y', $d)->toDateString();
                 }, explode(' - ', request()->range)
             );
-            $total_days = $range[1]->diffInDays($range[0]) + 1;
+            $total_days = (new Carbon($range[1]))->diffInDays(new Carbon($range[0])) + 1;
 
             $groupedRoomsCollection = $this->searchRooms(
                 request()->capacity,
