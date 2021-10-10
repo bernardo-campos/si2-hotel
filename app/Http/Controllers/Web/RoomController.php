@@ -42,8 +42,8 @@ class RoomController extends Controller
 
         $room_combinations = $this->makeCombi( $rooms->pluck('id'), $rooms_qty );
 
-        foreach ($room_combinations as $combination) {
-            $group->push( new RoomCollection($combination) );
+        foreach ($room_combinations as $rooms_ids) {
+            $group->push( new RoomCollection($rooms_ids) );
         }
 
         return $group->filter(
