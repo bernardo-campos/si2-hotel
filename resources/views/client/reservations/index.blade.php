@@ -9,15 +9,14 @@
 @php
     $heads = [
         '',
-        'Id',
-        'N° Res',
-        'Nº Tarjeta',
+        'N° Res', // = id
         'F. Ingreso',
         'F. Egreso',
-        // 'Huésped',
-        '#personas',
+        'Habitaciones',
+        'Personas',
         'Serv. Adic.', // (camas y cunas adicionales, estacionamiento)
         'Estado', // (vigente, cancelada, expirada)
+        ''
     ];
 @endphp
 
@@ -27,13 +26,30 @@
         <div class="card-body">
             <div class="row">
 
-                <x-adminlte-datatable id="table1" :heads="$heads">
-                    @foreach([] as $row)
+                <x-adminlte-datatable id="reservations" :heads="$heads">
+                    @foreach($reservations as $reservation)
                         <tr>
                             <td></td>
-                            @foreach($row as $cell)
-                                <td>{!! $cell !!}</td>
-                            @endforeach
+                            <td>{{ $reservation->id }}</td>
+                            <td>{{ $reservation->checkin->format('d/m/Y') }}</td>
+                            <td>{{ $reservation->checkout->format('d/m/Y') }}</td>
+                            <td>
+                                @foreach ($reservation->rooms as $room)
+                                    <div class="text-muted text-sm">#{{ $room->number }}</div>
+                                @endforeach
+                                Total: {{ $reservation->rooms->count() }} hab.
+                            </td>
+                            <td>
+                                @foreach ($reservation->people as $person)
+                                    <div class="text-muted text-sm">{{ $person->full_name }}</div>
+                                @endforeach
+                                Total: {{ $reservation->people->count() }} pers.
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <x-adminlte-button class="btn-xs px-1 py-0" theme="warning" icon="fas fa-ellipsis-h"/>
+                            </td>
                         </tr>
                     @endforeach
                 </x-adminlte-datatable>

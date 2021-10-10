@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReservationRoomsPeopleTable extends Migration
+class CreateReservationRoomPeopleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateReservationRoomsPeopleTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservation_rooms_people', function (Blueprint $table) {
+        Schema::create('reservation_room_people', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reservation_room_id')->constrained();
-            $table->foreignId('person_id')->constrained();
+            $table->string('dni', 8)->nullable();
+            $table->string('name')->nullable();
+            $table->string('surname')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateReservationRoomsPeopleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservation_rooms_people');
+        Schema::dropIfExists('reservation_room_people');
     }
 }

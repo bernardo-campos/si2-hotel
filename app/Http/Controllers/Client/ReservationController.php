@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reservation;
+use App\Models\ReservationRoom;
+use App\Models\ReservationRoomPeople;
 use App\Models\Room;
+use App\Models\RoomCollection;
 use Illuminate\Http\Request;
 use \Carbon\Carbon;
 
@@ -11,7 +15,9 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        return view('client.reservations.index');
+        return view('client.reservations.index', [
+            'reservations' => auth()->user()->reservations
+        ]);
     }
 
     public function create(Request $request)
@@ -27,9 +33,41 @@ class ReservationController extends Controller
         ]);
     }
 
-    // TODO: implement
     public function store(Request $request)
     {
-        dd( $request->all() );
+        $rooms = Room::find( explode(',', $request->rooms) );
+
+        $roomCollection = new RoomCollection( explode(',', $request->rooms) );
+
+        $reservation = Reservation::create([
+            'checkin' => $request->from,
+            'checkout' => $request->to,
+            'user_id' => auth()->user()->id,
+            'price' => $roomCollection->total_price,
+            // unsignedTinyInteger('people')
+            // string('aditional_services')
+            // string('status')
+            // float('advance')
+        ]);
+
+        foreach($request->room as $room_id => $roomPeople) {
+
+            $reservationRoom = ReservationRoom::create([
+                'reservation_id' => $reservation->id,
+                'room_id' => $room_id,
+                // unsignedTinyInteger('cribs')->default(0);
+            ]);
+
+            foreach($roomPeople as $person) {
+                $rrp = ReservationRoomPeople::create([
+                    'reservation_room_id' => $reservationRoom->id,
+                    'dni' => $person['dni'],
+                    'name' => $person['name'],
+                    'surname' => $person['surname'],
+                ]);
+            }
+        }
+
+        return redirect()->route('client.reservations.index')->with('success', 'Reserva registrada');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Person;
+use App\Models\Reservation;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,5 +42,10 @@ class User extends Authenticatable
     public function person()
     {
         return $this->belongsTo(Person::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
     }
 }
