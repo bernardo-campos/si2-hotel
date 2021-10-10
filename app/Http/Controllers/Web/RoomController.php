@@ -57,7 +57,7 @@ class RoomController extends Controller
         $groupedRoomsCollection = null;
         $total_days = 0;
 
-        if (request()->has(['capacity', 'rooms', 'range'])) {
+        if (request()->has(['capacity', 'rooms_qty', 'range'])) {
             $range = array_map( function ($d) {
                     return Carbon::createFromFormat('d/m/Y', $d)->toDateString();
                 }, explode(' - ', request()->range)
@@ -66,7 +66,7 @@ class RoomController extends Controller
 
             $groupedRoomsCollection = $this->searchRooms(
                 request()->capacity,
-                request()->rooms,
+                request()->rooms_qty,
                 $range
             );
         }

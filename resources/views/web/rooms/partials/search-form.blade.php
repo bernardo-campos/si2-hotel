@@ -24,14 +24,14 @@
                 </x-adminlte-input>
 
                 <x-adminlte-input
-                    name="rooms"
+                    name="rooms_qty"
                     label="Cantidad de habitaciones"
                     placeholder="0"
                     type="number"
                     igroup-size="sm"
                     fgroup-class="col-sm-4 col-md-3"
                     min=1 max=3
-                    value="{{ request()->input('rooms', 1) }}"
+                    value="{{ request()->input('rooms_qty', 1) }}"
                     required>
                 </x-adminlte-input>
 
