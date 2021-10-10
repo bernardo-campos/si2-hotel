@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\Room;
+use App\Models\ReservationRoom;
 use App\Models\ReservationRoomPeople;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,13 +23,15 @@ class Reservation extends Model
 
     /* ---- Relationships ---- */
 
-    public function rooms()
-    {
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function rooms() {
         return $this->belongsToMany(Room::class, 'reservation_rooms');
     }
 
-    public function people()
-    {
+    public function people() {
         return $this->hasManyThrough(ReservationRoomPeople::class, ReservationRoom::class);
     }
 }
