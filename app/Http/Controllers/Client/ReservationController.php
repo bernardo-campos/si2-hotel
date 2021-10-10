@@ -23,10 +23,12 @@ class ReservationController extends Controller
     public function create(Request $request)
     {
         $rooms = Room::find( explode(',', $request->rooms) );
+        $capacity = $request->capacity;
         $from = Carbon::create($request->from);
         $to = Carbon::create($request->to);
 
         return view('client.reservations.create', [
+            'capacity' => $capacity,
             'rooms' => $rooms,
             'from' => $from,
             'to' => $to,

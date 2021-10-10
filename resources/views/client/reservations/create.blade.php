@@ -2,6 +2,8 @@
 
 @section('title', 'Realizando reserva')
 
+@section('plugins.validatejs', true)
+
 @section('content_header')
     <div>
         <h1 class="m-0 text-dark">Realizando reserva...</h1>
@@ -15,9 +17,10 @@
 
 @section('content')
 
-<form action="{{ route('client.reservations.store') }}" method="post">
+<form action="{{ route('client.reservations.store') }}" method="post" onsubmit="return validateForm()" class="mb-5">
     @csrf
     <input type="hidden" name="rooms" value="{{ $rooms->pluck('id')->join(',') }}">
+    <input type="hidden" name="capacity" value="{{ $capacity }}">
     <input type="hidden" name="from" value="{{ $from }}">
     <input type="hidden" name="to" value="{{ $to }}">
 
@@ -59,6 +62,10 @@
         </div>
     @endforeach
 
+    <div class="alert alert-danger d-none" role="alert">
+      Debe ingresar hasta un máximo de {{ $capacity }} persona(s)
+    </div>
+
     <div class="container d-flex justify-content-end">
         <button class="btn btn-primary">Enviar</button>
     </div>
@@ -88,6 +95,35 @@
             }, 100)
         })
     }
+</script>
+<script type="text/javascript">
+
+    const capacity = $('input[name=capacity]').val();
+
+    function count(arr) {
+        return  arr.filter( x => x != '').length;
+    }
+
+    function validateForm() {
+        let dnis = $('[name*="[dni]"]').map( function(){ return $(this).val() } ).get();
+        let names = $('[name*="[name]"]').map( function(){ return $(this).val() } ).get();
+        let surnames = $('[name*="[surname]"]').map( function(){ return $(this).val() } ).get();
+
+        if (count(dnis) > capacity ||
+            count(names) > capacity ||
+            count(surnames) > capacity)
+        {
+            $('.alert').toggleClass('d-none', false);
+            return false;
+        }
+        $('.alert').toggleClass('d-none', true);
+        return true;
+    }
+
+    $('[name*="[dni]"],[name*="[name]"],[name*="[surname]"]').on('change keyup', function () {
+        validateForm();
+    })
+
 </script>
 @endpush
 

@@ -72,6 +72,7 @@
                 <input type="hidden" name="rooms" value="">
                 <input type="hidden" name="from" value="{{ Str::of($from)->explode('/')->reverse()->join('-') }}">
                 <input type="hidden" name="to" value="{{ Str::of($to)->explode('/')->reverse()->join('-') }}">
+                <input type="hidden" name="capacity" value="{{ $capacity }}">
                 <button id="btnReservation" class="btn btn-primary ml-auto" disabled="">
                     Continuar
                 </button>
