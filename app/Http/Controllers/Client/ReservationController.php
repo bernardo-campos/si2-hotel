@@ -61,12 +61,14 @@ class ReservationController extends Controller
             ]);
 
             foreach($roomPeople as $person) {
-                $rrp = ReservationRoomPeople::create([
-                    'reservation_room_id' => $reservationRoom->id,
-                    'dni' => $person['dni'],
-                    'name' => $person['name'],
-                    'surname' => $person['surname'],
-                ]);
+                if ( isset($person['dni']) || isset($person['name']) || isset($person['surname']) ) {
+                    ReservationRoomPeople::create([
+                        'reservation_room_id' => $reservationRoom->id,
+                        'dni' => $person['dni'],
+                        'name' => $person['name'],
+                        'surname' => $person['surname'],
+                    ]);
+                }
             }
         }
 
