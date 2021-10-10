@@ -17,7 +17,9 @@ class ReservationRoomPeople extends Model
     /* ---- Attributes ---- */
     public function getFullNameAttribute()
     {
-        return $this->attributes['surname'] . ', ' . $this->attributes['name'];
+        return $this->attributes['surname'] || $this->attributes['name']
+            ? $this->attributes['surname'] . ', ' . $this->attributes['name']
+            : $this->attributes['dni'];
     }
 
 }
