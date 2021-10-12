@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ReservationStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +21,7 @@ class CreateReservationsTable extends Migration
             $table->foreignId('user_id')->constrained(); // DNI_Huesped
             $table->unsignedTinyInteger('people_qty')->nullable();
             $table->string('aditional_services')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default(ReservationStatus::Created);
             $table->float('advance')->nullable();
             $table->float('price')->nullable();
             $table->timestamps();

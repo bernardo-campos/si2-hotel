@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Room;
+use App\Enums\ReservationStatus;
 use App\Models\ReservationRoom;
 use App\Models\ReservationRoomPeople;
+use App\Models\Room;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,7 @@ class Reservation extends Model
     protected $casts = [
         'checkin' => 'date',
         'checkout' => 'date',
+        'status' => ReservationStatus::class
     ];
 
 

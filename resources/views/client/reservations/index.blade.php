@@ -48,7 +48,7 @@
                                 @endforeach
                             </td>
                             <td></td>
-                            <td></td>
+                            <td>{{ $reservation->status->description }}</td>
                             <td>
                                 <x-adminlte-button class="btn-xs px-1 py-0" theme="warning" icon="fas fa-ellipsis-h"/>
                             </td>
