@@ -46,7 +46,7 @@ class ReservationController extends Controller
             'checkout' => $request->to,
             'user_id' => auth()->user()->id,
             'price' => $roomCollection->total_price,
-            // unsignedTinyInteger('people')
+            'people_qty' => $request->capacity,
             // string('aditional_services')
             // string('status')
             // float('advance')

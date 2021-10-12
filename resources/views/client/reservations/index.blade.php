@@ -40,10 +40,12 @@
                                 Total: {{ $reservation->rooms->count() }} hab.
                             </td>
                             <td>
+                                <div class="text-sm">Reserva para {{ $reservation->people_qty }}</div>
+                                <hr class="my-1">
+                                <div class="text-sm">({{ $reservation->people->count() }} personas registradas)</div>
                                 @foreach ($reservation->people as $person)
                                     <div class="text-muted text-sm">{{ $person->full_name }}</div>
                                 @endforeach
-                                Total: {{ $reservation->people->count() }} pers.
                             </td>
                             <td></td>
                             <td></td>

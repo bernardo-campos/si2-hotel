@@ -18,7 +18,7 @@ class CreateReservationsTable extends Migration
             $table->date('checkin');
             $table->date('checkout')->nullable();
             $table->foreignId('user_id')->constrained(); // DNI_Huesped
-            // $table->unsignedTinyInteger('people')->nullable();
+            $table->unsignedTinyInteger('people_qty')->nullable();
             $table->string('aditional_services')->nullable();
             $table->string('status')->nullable();
             $table->float('advance')->nullable();
