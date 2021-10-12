@@ -521,7 +521,27 @@ return [
                     'location' => 'vendor/textillate/animate.min.css'
                 ],
             ]
-        ]
+        ],
+        'CreditCard' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/credit-card/styles.css'
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/credit-card/imask.js'
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/credit-card/script.js'
+                ],
+            ]
+        ],
     ],
 
     /*
