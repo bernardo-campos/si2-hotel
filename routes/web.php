@@ -50,11 +50,11 @@ Route::get('/mis-datos', [UserController::class, 'edit'])->name('profile.edit');
 Route::group([
         'as' => 'client.',
         'prefix' => 'cliente',
-        'middleware' => ['auth', 'role:Cliente']
+        'middleware' => ['auth', 'role:Cliente', 'unpayed.reservations']
     ],
     function() {
         Route::get('/reservas', [ClientReservation::class, 'index'])->name('reservations.index');
-        Route::get('/reservas/{reservation}/pago', [ClientReservation::class, 'goToPayment'])->name('reservations.goToPayment');
+        Route::get('/reservas/{reservation}/pago', [ClientReservation::class, 'goToPayment'])->name('reservations.goToPayment')->withoutMiddleware('unpayed.reservations');
         Route::post('/reservas/{reservation}/pago', [ClientReservation::class, 'makePayment'])->name('reservations.makePayment');
 
         Route::get('/menus', [ClientMenu::class, 'index'])->name('menus.index');
