@@ -30,6 +30,16 @@ class Reservation extends Model
         return $this->checkout->diffInDays($this->checkin) + 1;
     }
 
+    public function getPriceAttribute()
+    {
+        return number_format($this->attributes['price'], 2, ',', '.');
+    }
+
+    public function getAdvancePriceAttribute()
+    {
+        return number_format($this->attributes['price'] * 0.1, 2, ',', '.');
+    }
+
 
     /* ---- Relationships ---- */
 

@@ -67,7 +67,7 @@
                     </tr>
                 @endforeach
             </x-adminlte-datatable>
-            <form class="d-flex col-12 my-3" action="{{ route('client.reservations.create') }}" method="post">
+            <form class="d-flex col-12 my-3" action="{{ route('client.reservations.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="rooms" value="">
                 <input type="hidden" name="from" value="{{ Str::of($from)->explode('/')->reverse()->join('-') }}">

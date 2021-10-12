@@ -54,6 +54,9 @@ Route::group([
     ],
     function() {
         Route::get('/reservas', [ClientReservation::class, 'index'])->name('reservations.index');
+        Route::get('/reservas/{reservation}/pago', [ClientReservation::class, 'goToPayment'])->name('reservations.goToPayment');
+        Route::post('/reservas/{reservation}/pago', [ClientReservation::class, 'makePayment'])->name('reservations.makePayment');
+
         Route::get('/menus', [ClientMenu::class, 'index'])->name('menus.index');
 
         Route::post('/reservando', [ClientReservation::class, 'create'])->name('reservations.create');

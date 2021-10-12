@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Enums\ReservationStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use App\Models\ReservationRoom;
@@ -22,22 +23,21 @@ class ReservationController extends Controller
 
     public function create(Request $request)
     {
-        $rooms = Room::find( explode(',', $request->rooms) );
-        $capacity = $request->capacity;
-        $from = Carbon::create($request->from);
-        $to = Carbon::create($request->to);
+        // $rooms = Room::find( explode(',', $request->rooms) );
+        // $capacity = $request->capacity;
+        // $from = Carbon::create($request->from);
+        // $to = Carbon::create($request->to);
 
-        return view('client.reservations.create', [
-            'capacity' => $capacity,
-            'rooms' => $rooms,
-            'from' => $from,
-            'to' => $to,
-        ]);
+        // return view('client.reservations.create', [
+        //     'capacity' => $capacity,
+        //     'rooms' => $rooms,
+        //     'from' => $from,
+        //     'to' => $to,
+        // ]);
     }
 
     public function store(Request $request)
     {
-        $rooms = Room::find( explode(',', $request->rooms) );
 
         $roomCollection = new RoomCollection( explode(',', $request->rooms) );
 
@@ -47,11 +47,43 @@ class ReservationController extends Controller
             'user_id' => auth()->user()->id,
             'price' => $roomCollection->total_price,
             'people_qty' => $request->capacity,
-            // string('aditional_services')
             // string('status')
-            // float('advance')
         ]);
 
+        foreach( explode(',', $request->rooms) as $room_id) {
+
+            $reservationRoom = ReservationRoom::create([
+                'reservation_id' => $reservation->id,
+                'room_id' => $room_id,
+                // unsignedTinyInteger('cribs')->default(0);
+            ]);
+
+        }
+
+        return redirect()->route('client.reservations.goToPayment', $reservation);
+    }
+
+    public function goToPayment(Reservation $reservation)
+    {
+        // TODO: Authorize ($reservation->user_id == auth()->id && $reservation->status == created)
+
+        return view('client.reservations.goToPayment', [
+            'reservation' => $reservation
+        ]);
+    }
+
+    public function makePayment(Request $request, Reservation $reservation)
+    {
+
+        $reservation->status = ReservationStatus::Advanced();
+        $reservation->save();
+
+        return redirect()->route('client.reservations.index')->with('success', 'Reserva realizada exitosamente');
+    }
+
+    public function registerPeople(Request $request)
+    {
+        /*
         foreach($request->room as $room_id => $roomPeople) {
 
             $reservationRoom = ReservationRoom::create([
@@ -71,7 +103,8 @@ class ReservationController extends Controller
                 }
             }
         }
+        */
 
-        return redirect()->route('client.reservations.index')->with('success', 'Reserva registrada');
+        // return redirect()->route('client.reservations.index')->with('success', 'Reserva registrada');
     }
 }
