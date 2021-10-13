@@ -37,6 +37,7 @@ Route::get('/home', function () {
 // Web (public) routes
 Route::group([
         'as' => 'web.',
+        'middleware' => ['unpayed.reservations'],
     ],
     function() {
         Route::get('/habitaciones', [WebRoom::class, 'index'])->name('rooms.index');
@@ -54,8 +55,13 @@ Route::group([
     ],
     function() {
         Route::get('/reservas', [ClientReservation::class, 'index'])->name('reservations.index');
-        Route::get('/reservas/{reservation}/pago', [ClientReservation::class, 'goToPayment'])->name('reservations.goToPayment')->withoutMiddleware('unpayed.reservations');
-        Route::post('/reservas/{reservation}/pago', [ClientReservation::class, 'makePayment'])->name('reservations.makePayment');
+        Route::group([
+            'excluded_middleware' => ['unpayed.reservations']
+        ], function () {
+            Route::get('/reservas/{reservation}/pago', [ClientReservation::class, 'goToPayment'])->name('reservations.goToPayment');
+            Route::post('/reservas/{reservation}/pago', [ClientReservation::class, 'makePayment'])->name('reservations.makePayment');
+            Route::delete('/reservas/{reservation}', [ClientReservation::class, 'destroy'])->name('reservations.destroy');
+        });
 
         Route::get('/menus', [ClientMenu::class, 'index'])->name('menus.index');
 

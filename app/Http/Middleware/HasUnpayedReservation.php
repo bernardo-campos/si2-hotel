@@ -17,9 +17,11 @@ class HasUnpayedReservation
      */
     public function handle(Request $request, Closure $next)
     {
-        $unpayedReservation = $request->user()->reservations()->where('status', ReservationStatus::Created)->first();
+        $unpayedReservation = auth()->check()
+                            ? $request->user()->reservations()->where('status', ReservationStatus::Created)->first()
+                            : null;
 
-        if (auth()->check() && $unpayedReservation) {
+        if ($unpayedReservation) {
             return redirect()->route('client.reservations.goToPayment', $unpayedReservation)->with('error', 'Tiene una reserva pendiente');
         }
 

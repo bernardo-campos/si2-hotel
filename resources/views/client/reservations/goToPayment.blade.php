@@ -63,6 +63,7 @@
 
         </div>
         <div class="card-footer text-right">
+            <button type="button" class="btn btn-warning" onclick="document.getElementById('btn-destroy').click()">Cancelar reserva</button>
             <button class="btn btn-primary">Procesar pago</button>
         </div>
     </div>
@@ -72,6 +73,15 @@
     </div> --}}
 
 </form>
+
+<form id="destroy" action="{{ route('client.reservations.destroy', $reservation) }}"
+    onsubmit="return confirm('¿Está seguro/a que desea cancelar la reserva que está realizando?');"
+    method="post">
+    @method('DELETE')
+    @csrf
+    <button id="btn-destroy" class="d-none"></button>
+</form>
+
 @stop
 
 @push('js')

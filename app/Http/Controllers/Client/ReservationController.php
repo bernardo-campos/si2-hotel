@@ -81,6 +81,14 @@ class ReservationController extends Controller
         return redirect()->route('client.reservations.index')->with('success', 'Reserva realizada exitosamente');
     }
 
+    public function destroy(Reservation $reservation)
+    {
+        ReservationRoom::where('reservation_id', $reservation->id)->delete();
+        $reservation->delete();
+
+        return redirect()->route('web.rooms.index')->with('success', 'La reserva se canceló');
+    }
+
     public function registerPeople(Request $request)
     {
         /*
