@@ -28,7 +28,12 @@
                             <td>{{ $card->name }}</td>
                             <td>{{ $card->cardnumber }}</td>
                             <td>
-                                {{-- <button class="btn btn-sm btn-danger">Elimnar</button> --}}
+                                <form id="destroy" action="{{ route('client.cards.destroy', $card) }}" onsubmit="return confirm('¿Está seguro/a que desea eliminar la tarjeta?');"
+                                    method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-sm btn-danger">Eliminar</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

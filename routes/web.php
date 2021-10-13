@@ -65,6 +65,7 @@ Route::group([
         });
 
         Route::get('/tarjetas', [ClientCard::class, 'index'])->name('cards.index');
+        Route::delete('/tarjetas/{card}', [ClientCard::class, 'destroy'])->name('cards.destroy');
 
         Route::get('/menus', [ClientMenu::class, 'index'])->name('menus.index');
 
