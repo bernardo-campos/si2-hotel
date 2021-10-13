@@ -14,5 +14,7 @@ final class ReservationStatus extends Enum implements LocalizedEnum
 {
     const Created = 0;
     const Advanced = 1;
-    const Ended = 2;
+    const Checkin = 2;
+    const Checkout = 3;
+    const Ended = 4;
 }

@@ -83,10 +83,17 @@ Route::group([
     function() {
         Route::get('/clientes', [AttendantClient::class, 'index'])->name('clients.index');
         Route::get('/clientes/crear', [AttendantClient::class, 'create'])->name('clients.create');
+
         Route::get('/habitaciones', [AttendantRoom::class, 'index'])->name('rooms.index');
         Route::get('/habitaciones/crear', [AttendantRoom::class, 'create'])->name('rooms.create');
+
         Route::get('/reservas', [AttendantReservation::class, 'index'])->name('reservations.index');
         Route::get('/reservas/crear', [AttendantReservation::class, 'create'])->name('reservations.create');
+
+        Route::get('/reservas/{reservation}/checkin', [AttendantReservation::class, 'checkin'])->name('reservations.checkin');
+        Route::post('/reservas/{reservation}/checkin', [AttendantReservation::class, 'checkinPost'])->name('reservations.checkinPost');
+        Route::get('/reservas/{reservation}/checkout', [AttendantReservation::class, 'checkout'])->name('reservations.checkout');
+
         Route::get('/pagos', [AttendantPayment::class, 'index'])->name('payments.index');
         Route::get('/pagos/crear', [AttendantPayment::class, 'create'])->name('payments.create');
     }
