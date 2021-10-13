@@ -47,6 +47,37 @@
 @stop
 
 @section('adminlte_js')
+    @section('plugins.Sweetalert2', true)
+    @php
+        $type = session()->has('success')
+                ? 'success' : (
+                session()->has('info')
+                ? 'info' : (
+                session()->has('warning')
+                ? 'warning' : (
+                session()->has('error') ?
+                'error' : '')));
+    @endphp
+    @php( $hasAnyMessage = $type != '' )
+    @php( $message = session()->get( $type ) )
+
+        @if ( $hasAnyMessage )
+        <script type="text/javascript">
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: true,
+            })
+            $(document).ready(function () {
+                Toast.fire({
+                    timer: {{ max(3000, 80 * strlen($message)) }},
+                    timerProgressBar: true,
+                    icon: "{{ $type }}",
+                    title: "{{ $message }}"
+                  })
+            })
+        </script>
+    @endif
     @stack('js')
     @yield('js')
 @stop
