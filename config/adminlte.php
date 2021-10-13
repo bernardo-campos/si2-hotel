@@ -258,6 +258,13 @@ return [
             'route'     => 'client.menus.index',
             'hasRole'   => 'Cliente',
         ],
+        [
+            'text'      => 'Gestionar mis tarjetas',
+            'icon'      => 'far fa-credit-card',
+            'route'     => 'client.cards.index',
+            'hasRole'   => 'Cliente',
+            'topnav_user' => true
+        ],
 
         // Menu Encargado
         ['header' => 'ÁREA ENCARGADO', 'hasRole' => 'Encargado'],

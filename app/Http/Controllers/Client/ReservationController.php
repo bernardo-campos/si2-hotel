@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Enums\ReservationStatus;
 use App\Http\Controllers\Controller;
+use App\Models\Card;
 use App\Models\Reservation;
 use App\Models\ReservationRoom;
 use App\Models\ReservationRoomPeople;
@@ -38,7 +39,6 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
-
         $roomCollection = new RoomCollection( explode(',', $request->rooms) );
 
         $reservation = Reservation::create([
@@ -77,6 +77,16 @@ class ReservationController extends Controller
 
         $reservation->status = ReservationStatus::Advanced();
         $reservation->save();
+
+        if ($request->boolean('remember_card')) {
+            Card::create([
+                'name' => $request->name,
+                'cardnumber' => str_replace(' ', '', $request->cardnumber),
+                'expirationdate' => $request->expirationdate,
+                'securitycode' => $request->securitycode,
+                'user_id' => auth()->user()->id
+            ]);
+        }
 
         return redirect()->route('client.reservations.index')->with('success', 'Reserva realizada exitosamente');
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 // Client:
 use App\Http\Controllers\Client\MenuController as ClientMenu;
+use App\Http\Controllers\Client\CardController as ClientCard;
 use App\Http\Controllers\Client\ReservationController as ClientReservation;
 
 // Attendant:
@@ -62,6 +63,8 @@ Route::group([
             Route::post('/reservas/{reservation}/pago', [ClientReservation::class, 'makePayment'])->name('reservations.makePayment');
             Route::delete('/reservas/{reservation}', [ClientReservation::class, 'destroy'])->name('reservations.destroy');
         });
+
+        Route::get('/tarjetas', [ClientCard::class, 'index'])->name('cards.index');
 
         Route::get('/menus', [ClientMenu::class, 'index'])->name('menus.index');
 
