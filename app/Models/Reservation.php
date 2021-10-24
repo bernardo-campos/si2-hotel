@@ -27,7 +27,7 @@ class Reservation extends Model
 
     public function getTotalDaysAttribute()
     {
-        return $this->checkout->diffInDays($this->checkin) + 1;
+        return $this->checkout->diffInDays($this->checkin);
     }
 
     public function getPriceAttribute()
