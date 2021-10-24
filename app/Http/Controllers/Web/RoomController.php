@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
 use App\Models\RoomCollection;
-use \Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use \Carbon\Carbon;
 
 class RoomController extends Controller
 {
@@ -62,7 +63,18 @@ class RoomController extends Controller
                     return Carbon::createFromFormat('d/m/Y', $d)->toDateString();
                 }, explode(' - ', request()->range)
             );
-            $total_days = (new Carbon($range[1]))->diffInDays(new Carbon($range[0])) + 1;
+            $total_days = (new Carbon($range[1]))->diffInDays(new Carbon($range[0]));
+
+            if ($total_days == 0) {
+                throw ValidationException::withMessages([
+                    'range' => ['Debe especificar un dia de entrada y otro de salida']
+                ]);
+            }
+            if (request()->capacity < request()->rooms_qty) {
+                throw ValidationException::withMessages([
+                    'rooms_qty' => ['La cantidad de habitaciones debe ser menor que la cantidad de huéspedes']
+                ]);
+            }
 
             $groupedRoomsCollection = $this->searchRooms(
                 request()->capacity,

@@ -48,7 +48,10 @@ class Room extends Model
             ? true
             : $this->reservations->every(
                 function ($reservation, $key) use ($currentPeriod) {
-                    $period = CarbonPeriod::create($reservation->checkin, $reservation->checkout);
+                    $period = CarbonPeriod::create(
+                        $reservation->checkin->addDays(1),
+                        $reservation->checkout->addDays(-1)
+                    );
                     return !array_intersect($currentPeriod->toArray(), $period->toArray());
                 }
         );
