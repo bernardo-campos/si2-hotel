@@ -12,9 +12,10 @@ use BenSampo\Enum\Contracts\LocalizedEnum;
  */
 final class ReservationStatus extends Enum implements LocalizedEnum
 {
-    const Created = 0;
-    const Advanced = 1;
-    const Checkin = 2;
-    const Checkout = 3;
-    const Ended = 4;
+    const Created   = 0;
+    const Advanced  = 1;
+    const Cancelled = 2;
+    const Checkin   = 3;
+    const Checkout  = 4;
+    const Ended     = 5;
 }

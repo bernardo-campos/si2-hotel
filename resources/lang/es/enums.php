@@ -5,9 +5,10 @@ use App\Enums\ReservationStatus;
 return [
 
     ReservationStatus::class => [
-        ReservationStatus::Created => 'Creada',
-        ReservationStatus::Advanced => 'Señada',
-        ReservationStatus::Ended => 'Finalizada',
+        ReservationStatus::Created      => 'Creada',
+        ReservationStatus::Cancelled    => 'Cancelada',
+        ReservationStatus::Advanced     => 'Señada',
+        ReservationStatus::Ended        => 'Finalizada',
     ],
 
 ];

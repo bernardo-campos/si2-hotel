@@ -99,6 +99,14 @@ class ReservationController extends Controller
         return redirect()->route('web.rooms.index')->with('success', 'La reserva se canceló');
     }
 
+    public function cancel(Reservation $reservation)
+    {
+        $reservation->status = ReservationStatus::Cancelled;
+        $reservation->save();
+
+        return redirect()->route('client.reservations.index')->with('success', 'La reserva se canceló');
+    }
+
     public function registerPeople(Request $request)
     {
         /*

@@ -71,6 +71,7 @@ Route::group([
 
         Route::post('/reservando', [ClientReservation::class, 'create'])->name('reservations.create');
         Route::post('/reservando/store', [ClientReservation::class, 'store'])->name('reservations.store');
+        Route::get('/reservas/cancel/{reservation}', [ClientReservation::class, 'cancel'])->name('reservations.cancel');
     }
 );
 

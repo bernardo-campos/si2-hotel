@@ -49,8 +49,11 @@
                             </td>
                             <td></td>
                             <td>{{ $reservation->status->description }}</td>
-                            <td>
-                                <x-adminlte-button class="btn-xs px-1 py-0" theme="warning" icon="fas fa-ellipsis-h"/>
+                            <td class="d-flex flex-column">
+                                {{-- <x-adminlte-button class="btn-xs px-1 py-0" theme="warning" icon="fas fa-ellipsis-h"/> --}}
+                                @can('cancel', $reservation)
+                                    <a href="{{ route('client.reservations.cancel', $reservation) }}">Cancelar</a>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
