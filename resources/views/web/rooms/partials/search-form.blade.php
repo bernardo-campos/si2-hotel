@@ -42,7 +42,7 @@
                                         : "js:moment().format('DD/MM/YYYY')",
                         "endDate" => request()->has('range')
                                         ? substr(request()->range, -10)
-                                        : "js:moment().format('DD/MM/YYYY')",
+                                        : "js:moment().add(1,'days').format('DD/MM/YYYY')",
                         "minDate" => "js:moment().format('DD/MM/YYYY')",
                     ];
                 @endphp

@@ -35,7 +35,7 @@
                             @foreach ($roomGroup->rooms as $room)
                                 <div class="d-flex">
                                     <div class="ml-2" style="width:120px; max-width: 120px;">
-                                        #{{ $loop->iteration }} (Hab. {{ $room->number }})
+                                        Opción #{{ $loop->parent->iteration }}
                                         <br>
                                         <span class="text-muted text-sm">({{ $room->renderBeds() }})</span>
                                     </div>

@@ -41,6 +41,17 @@ class Room extends Model
             : $txtDoubleBeds . $txtSingleBeds;
     }
 
+    public function renderServices()
+    {
+        $services = [
+            !$this->has_tv ? "TV" : null,
+            !$this->has_minibar ? "Frigobar" : null,
+            !$this->has_ac ? "A.Ac" : null,
+        ];
+
+        return implode(", ", array_filter($services));
+    }
+
     public function isAvailableBetween($from, $to) {
         $currentPeriod = CarbonPeriod::create($from, $to);
         return

@@ -16,21 +16,36 @@
 
     <div class="card">
         <div class="card-header">
-            Abonar reserva 10%
+            Abonando reserva 10%
             <br>
-            <span class="text-sm text-muted">
-                Precio total: $ {{ $reservation->price }}
-            </span>
-            <br>
-            <span class="text-sm text-muted">
-                Monto a pagar: $ {{ $reservation->advance_price}}
-            </span>
+            <div class="text-muted">
+                {{ $reservation->rooms->count() }} habitacion(es):
+                <br>
+                <ul>
+                @foreach ($reservation->rooms as $room)
+                    <li>
+                        {{ $room->renderBeds() }} | {{ $room->renderServices() }}
+                    </li>
+                @endforeach
+                </ul>
+            </div>
         </div>
         <div class="card-body">
 
             <div class="row">
 
                 <div class="col-6">
+
+                    <div class="text-right">
+                        <span class="text-sm text-muted">
+                            Precio de la reserva: $ {{ $reservation->price }}
+                        </span>
+                        <br>
+                        <span class="text-sm text-muted">
+                            Monto a pagar: <span class="text-success text-bold">$ {{ $reservation->advance_price}}</span>
+                        </span>
+                    </div>
+
                     <div class="form-group">
                         <label for="name">Nombre en la tarjeta</label>
                         <input name="name" id="name" maxlength="20" type="text" class="form-control">
