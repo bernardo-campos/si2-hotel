@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\RoomSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 
@@ -17,5 +18,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([RoleSeeder::class]);
         $this->call([UserSeeder::class]);
+        $this->call([RoomSeeder::class]);
     }
 }
