@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Attendant;
 
-use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
     public function index()
     {
-        return view('attendant.payments.index');
+        return view('attendant.payments.index', [
+            'payments' => Payment::all()
+        ]);
     }
 
     public function create()
