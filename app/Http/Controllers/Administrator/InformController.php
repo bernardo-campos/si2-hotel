@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Administrator;
 
+use App\Enums\ReservationStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -38,7 +40,17 @@ class InformController extends Controller
 
     public function occupation()
     {
-        return view('admin.reports.occupation');
+        $reservations = Reservation::with([
+                'user',
+                'reservation_rooms.room',
+                'reservation_rooms.reservation_room_people',
+                'people',
+                'payments',
+            ])->whereStatus( ReservationStatus::Checkin() )->get();
+
+        return view('admin.reports.occupation', [
+            'reservations' => $reservations
+        ]);
     }
 
     public function services()

@@ -22,4 +22,11 @@ class ReservationRoomPeople extends Model
             : $this->attributes['dni'];
     }
 
+
+    /* ---- Relationships ---- */
+
+    public function reservation_room() {
+        return $this->belongsTo(ReservationRoom::class);
+    }
+
 }

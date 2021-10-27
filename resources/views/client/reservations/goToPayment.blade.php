@@ -99,5 +99,8 @@
     .services:not(:empty)::before {
         content: ' | ';
     }
+    .price::before {
+        content: ' $ ';
+    }
 </style>
 @endpush
