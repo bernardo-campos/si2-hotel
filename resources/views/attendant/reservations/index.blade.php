@@ -12,13 +12,15 @@
 @php
     $heads = [
         '',
-        'N° Res', // = id
+        'N°', // = id
         'Usuario',
         'F. Ingreso',
         'F. Egreso',
         'Habitaciones',
         'Personas',
         'Serv. Adic.', // (camas y cunas adicionales, estacionamiento)
+        'Valor',
+        'Pagado',
         'Estado', // (vigente, cancelada, expirada)
         ''
     ];
@@ -45,12 +47,17 @@
                                 Total: {{ $reservation->rooms->count() }} hab.
                             </td>
                             <td>
-                                @foreach ($reservation->people as $person)
-                                    <div class="text-muted text-sm">{{ $person->full_name }}</div>
-                                @endforeach
-                                Total: {{ $reservation->people->count() }} pers.
+                                <div class="text-sm nowrap">
+                                    Reserva para: {{ $reservation->people_qty }}
+                                </div>
+                                <hr class="my-0">
+                                <div class="text-sm nowrap">
+                                    Personas registradas: {{ $reservation->people->count() }}
+                                </div>
                             </td>
                             <td></td>
+                            <td class="price text-sm text-muted">{{ $reservation->price }}</td>
+                            <td class="price text-sm text-muted">{{ $reservation->payed }}</td>
                             <td>{{ $reservation->status->description }}</td>
                             <td>
                                 @can('checkin', $reservation)
@@ -78,4 +85,13 @@
 @endpush
 
 @push('css')
+<style type="text/css">
+    .price::before {
+        content: '$ ';
+        font-size: smaller;
+    }
+    .nowrap {
+        white-space: nowrap;
+    }
+</style>
 @endpush
