@@ -79,7 +79,7 @@ class ReservationController extends Controller
         $reservation->save();
 
         $reservation->payments()->create([
-            'concept' => 'Seña %10 de reserva #' . $reservation->id,
+            'concept' => 'Anticipo %10 de reserva nro. ' . $reservation->id,
             'user_id' => $reservation->user->id,
             'ammount' => 0.1 * $reservation->price_float,
         ]);
