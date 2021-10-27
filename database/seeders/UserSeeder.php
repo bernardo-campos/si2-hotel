@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = Person::create([
-            'name' => 'John Doe',
+            'name' => 'Bernardo Campos',
             'dni' => '12345677',
         ])->user()->save(
             new User([
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         )->assignRole('Administrador'); // over user returned by save() method
 
         $encargado = Person::create([
-            'name' => 'Jane Doe',
+            'name' => 'Encargado A.',
             'dni' => '12345678',
         ])->user()->save(
             new User([
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         )->assignRole('Encargado'); // over user returned by save() method
 
         $user = Person::create([
-            'name' => 'Johnny Doe',
+            'name' => 'Juan Gomez',
             'dni' => '12345679',
         ])->user()->save(
             new User([
