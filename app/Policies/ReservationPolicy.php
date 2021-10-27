@@ -27,4 +27,16 @@ class ReservationPolicy
             && $reservation->status == ReservationStatus::Advanced()
             && $reservation->checkin->diffInDays() >= 6;
     }
+
+    public function checkin(User $user, Reservation $reservation)
+    {
+        return $user->hasRole('Encargado')
+            && $reservation->status == ReservationStatus::Advanced();
+    }
+
+    public function checkout(User $user, Reservation $reservation)
+    {
+        return $user->hasRole('Encargado')
+            && $reservation->status == ReservationStatus::Checkin();
+    }
 }
