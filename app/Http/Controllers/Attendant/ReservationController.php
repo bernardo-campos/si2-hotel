@@ -65,10 +65,13 @@ class ReservationController extends Controller
 
     public function checkoutPost(Request $request, Reservation $reservation)
     {
+        // dd($request->all(), $reservation->toArray());
+
         $reservation->payments()->create([
             'concept' => 'Saldo de la reserva',
             'user_id' => $reservation->user->id,
             'ammount' => $reservation->to_pay_float,
+            'method' => $request->payment_method, // TODO: validate
         ]);
 
 

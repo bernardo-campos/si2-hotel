@@ -14,6 +14,7 @@ class Payment extends Model
         'reservation_id',
         'user_id',
         'ammount',
+        'method',
     ];
 
 
