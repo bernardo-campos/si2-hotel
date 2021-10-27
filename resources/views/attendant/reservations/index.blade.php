@@ -12,13 +12,13 @@
 @php
     $heads = [
         '',
-        'N°', // = id
+        ['label' => 'N°', 'width' => '0px'], // = id
         'Usuario',
         'F. Ingreso',
         'F. Egreso',
         'Habitaciones',
         'Personas',
-        'Serv. Adic.', // (camas y cunas adicionales, estacionamiento)
+        // 'Serv. Adic.', // (camas y cunas adicionales, estacionamiento)
         'Valor',
         'Pagado',
         'Estado', // (vigente, cancelada, expirada)
@@ -55,19 +55,19 @@
                                     Personas registradas: {{ $reservation->people->count() }}
                                 </div>
                             </td>
-                            <td></td>
+                            {{-- <td></td> --}}
                             <td class="price text-sm text-muted">{{ $reservation->price }}</td>
                             <td class="price text-sm text-muted">{{ $reservation->payed }}</td>
                             <td>{{ $reservation->status->description }}</td>
                             <td>
                                 @can('checkin', $reservation)
                                     <a href="{{ route('attendant.reservations.checkin', $reservation) }}">
-                                        <x-adminlte-button title="Check-in" class="btn-sm px-1 py-0" theme="info" icon="fas fa-sign-in-alt"/>
+                                        <x-adminlte-button label="CheckIn" title="Hacer Check-in" class="btn-sm px-1 py-0" theme="info" icon="fas fa-sign-in-alt"/>
                                     </a>
                                 @endcan
                                 @can('checkout', $reservation)
                                     <a href="{{ route('attendant.reservations.checkout', $reservation) }}">
-                                        <x-adminlte-button title="Check-out" class="btn-sm px-1 py-0" theme="warning" icon="fas fa-sign-out-alt"/>
+                                        <x-adminlte-button label="CheckOut" title="Hacer Check-out" class="btn-sm px-1 py-0" theme="warning" icon="fas fa-sign-out-alt"/>
                                     </a>
                                 @endcan
                             </td>
@@ -92,6 +92,9 @@
     }
     .nowrap {
         white-space: nowrap;
+    }
+    th:nth-child(2) {
+        padding-left: 0;
     }
 </style>
 @endpush

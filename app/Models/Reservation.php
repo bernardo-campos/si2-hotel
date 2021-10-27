@@ -27,6 +27,8 @@ class Reservation extends Model
         'price',
         'advance_price',
         'payed',
+        'to_pay',
+        'to_pay_float',
     ];
 
     /* ---- Attributes ---- */
@@ -51,9 +53,25 @@ class Reservation extends Model
         return number_format($this->attributes['price'] * 0.1, 2, ',', '.');
     }
 
-    public function getPayedAttribute()
+    public function getPayedFloatAttribute()
     {
         return $this->payments->reduce( fn ($carry, $payment) => $carry + $payment->ammount, 0.0);
+    }
+
+    public function getPayedAttribute($value='')
+    {
+        return number_format($this->payed_float, 2, ',', '.');
+    }
+
+    public function getToPayFloatAttribute()
+    {
+        $price = $this->price_float;
+        return $price - $this->payed_float;
+    }
+
+    public function getToPayAttribute()
+    {
+        return number_format($this->to_pay_float, 2, ',', '.');
     }
 
 

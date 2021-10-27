@@ -58,8 +58,23 @@ class ReservationController extends Controller
 
     public function checkout(Reservation $reservation)
     {
+        return view('attendant.reservations.checkout', [
+            'reservation' => $reservation
+        ]);
+    }
 
-        $reservation->status = ReservationStatus::Checkout();
+    public function checkoutPost(Request $request, Reservation $reservation)
+    {
+        $reservation->payments()->create([
+            'concept' => 'Saldo de la reserva',
+            'user_id' => $reservation->user->id,
+            'ammount' => $reservation->to_pay_float,
+        ]);
+
+
+        $reservation->status = ReservationStatus::Ended();
+
+        // $reservation->status = ReservationStatus::Checkout();
 
         $reservation->save();
 

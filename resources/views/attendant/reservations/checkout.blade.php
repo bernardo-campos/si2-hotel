@@ -5,20 +5,22 @@
 @section('title', 'Realizando reserva')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">¡Ya casi terminamos!</h1>
+    <h1 class="m-0 text-dark">Haciendo checkout para la reserva #{{ $reservation->id }}</h1>
 @stop
 
 
 @section('content')
 
-<form action="{{ route('client.reservations.makePayment', $reservation) }}" method="post" onsubmit="return true" class="mb-5">
+<form action="{{ route('attendant.reservations.checkout', $reservation) }}" method="post" onsubmit="return true" class="mb-5">
     @csrf
 
     <div class="card">
         <div class="card-header">
-            Abonando reserva 10%
+            Abonando saldo para reserva # {{ $reservation->id }}
             <br>
-            <div class="text-muted">
+            A nombre de: {{ $reservation->user->name }}
+            <br>
+            <div class="text-muted ml-3">
                 {{ $reservation->rooms->count() }} habitacion(es):
                 <br>
                 <ul>
@@ -33,19 +35,35 @@
         </div>
         <div class="card-body">
 
+            <div class="row mb-3">
+                <div class="col-12 col-sm-6 col-md-4">
+
+                    <div class="d-flex flex-column text-sm text-muted">
+                        <div class="d-flex">
+                            <span>Precio de la reserva:</span>
+                            <div class="separator"></div>
+                            <span class="price">{{ $reservation->price }}</span>
+                        </div>
+                        @foreach ($reservation->payments as $payment)
+                            <div class="d-flex">
+                                <span>{{ $payment->concept }}:</span>
+                                <div class="separator"></div>
+                                <span class="price-minus">{{ $payment->ammount }}</span>
+                            </div>
+                        @endforeach
+                        <div class="d-flex">
+                            <span>Total a pagar:</span>
+                            <div class="separator"></div>
+                            <span class="text-success text-bold price">{{ $reservation->to_pay_float }}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div class="row">
 
                 <div class="col-6">
-
-                    <div class="text-right">
-                        <span class="text-sm text-muted">
-                            Precio de la reserva: $ {{ $reservation->price }}
-                        </span>
-                        <br>
-                        <span class="text-sm text-muted">
-                            Monto a pagar: <span class="text-success text-bold">$ {{ $reservation->advance_price}}</span>
-                        </span>
-                    </div>
 
                     <div class="form-group">
                         <label for="name">Nombre en la tarjeta</label>
@@ -67,15 +85,6 @@
                         <label for="securitycode">Código de seguridad</label>
                         <input name="securitycode" id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric" class="form-control">
                     </div>
-                    <div class="form-check">
-                        <input
-                            name="remember_card"
-                            id="remember_card"
-                            class="form-check-input"
-                            {{ old('remember_card') ? 'checked=""' : '' }}
-                            type="checkbox">
-                        <label class="form-check-label" for="remember_card">Recordar tarjeta</label>
-                    </div>
                 </div>
 
                 <div class="col-6">
@@ -88,19 +97,10 @@
 
         </div>
         <div class="card-footer text-right">
-            <button type="button" class="btn btn-warning" onclick="document.getElementById('btn-destroy').click()">Cancelar reserva</button>
             <button class="btn btn-primary">Procesar pago</button>
         </div>
     </div>
 
-</form>
-
-<form id="destroy" action="{{ route('client.reservations.destroy', $reservation) }}"
-    onsubmit="return confirm('¿Está seguro/a que desea cancelar la reserva que está realizando?');"
-    method="post">
-    @method('DELETE')
-    @csrf
-    <button id="btn-destroy" class="d-none"></button>
 </form>
 
 @stop
@@ -116,6 +116,19 @@
 <style type="text/css">
     .services:not(:empty)::before {
         content: ' | ';
+    }
+    .text-underline {
+        text-decoration: underline;
+    }
+    .price::before {
+        content: ' $ ';
+    }
+    .price-minus::before {
+        content: ' -$ ';
+    }
+    .separator {
+        flex-grow: 1;
+        border-bottom: dotted 1px grey;
     }
 </style>
 @endpush
