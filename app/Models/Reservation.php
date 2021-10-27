@@ -25,7 +25,7 @@ class Reservation extends Model
     protected $appends = [
         'total_days',
         'price',
-        'advanced_price',
+        'advance_price',
         'payed',
     ];
 
@@ -39,6 +39,11 @@ class Reservation extends Model
     public function getPriceAttribute()
     {
         return number_format($this->attributes['price'], 2, ',', '.');
+    }
+
+    public function getPriceFloatAttribute()
+    {
+        return $this->attributes['price'];
     }
 
     public function getAdvancePriceAttribute()

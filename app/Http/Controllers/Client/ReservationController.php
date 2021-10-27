@@ -81,7 +81,7 @@ class ReservationController extends Controller
         $reservation->payments()->create([
             'concept' => 'Seña %10 de reserva #' . $reservation->id,
             'user_id' => $reservation->user->id,
-            'ammount' => 0.1 * floatval($reservation->price),
+            'ammount' => 0.1 * $reservation->price_float,
         ]);
 
         if ($request->boolean('remember_card')) {
