@@ -78,6 +78,12 @@ class ReservationController extends Controller
         $reservation->status = ReservationStatus::Advanced();
         $reservation->save();
 
+        $reservation->payments()->create([
+            'concept' => 'Seña %10 de reserva #' . $reservation->id,
+            'user_id' => $reservation->user->id,
+            'ammount' => 0.1 * floatval($reservation->price),
+        ]);
+
         if ($request->boolean('remember_card')) {
             Card::create([
                 'name' => $request->name,

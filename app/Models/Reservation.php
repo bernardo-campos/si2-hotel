@@ -22,6 +22,12 @@ class Reservation extends Model
         'status' => ReservationStatus::class
     ];
 
+    protected $appends = [
+        'total_days',
+        'price',
+        'advanced_price',
+        'payed',
+    ];
 
     /* ---- Attributes ---- */
 
@@ -40,6 +46,11 @@ class Reservation extends Model
         return number_format($this->attributes['price'] * 0.1, 2, ',', '.');
     }
 
+    public function getPayedAttribute()
+    {
+        return $this->payments->reduce( fn ($carry, $payment) => $carry + $payment->ammount, 0.0);
+    }
+
 
     /* ---- Relationships ---- */
 
@@ -53,5 +64,10 @@ class Reservation extends Model
 
     public function people() {
         return $this->hasManyThrough(ReservationRoomPeople::class, ReservationRoom::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

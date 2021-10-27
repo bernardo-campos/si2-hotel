@@ -15,6 +15,8 @@
         'Habitaciones',
         'Personas',
         'Serv. Adic.', // (camas y cunas adicionales, estacionamiento)
+        'Valor',
+        'Pagado',
         'Estado', // (vigente, cancelada, expirada)
         ''
     ];
@@ -48,6 +50,8 @@
                                 @endforeach
                             </td>
                             <td></td>
+                            <td class="price text-sm text-muted">{{ $reservation->price }}</td>
+                            <td class="price text-sm text-muted">{{ $reservation->payed }}</td>
                             <td>{{ $reservation->status->description }}</td>
                             <td class="d-flex flex-column">
                                 {{-- <x-adminlte-button class="btn-xs px-1 py-0" theme="warning" icon="fas fa-ellipsis-h"/> --}}
@@ -69,4 +73,10 @@
 @endpush
 
 @push('css')
+<style type="text/css">
+    .price::before {
+        content: '$ ';
+        font-size: smaller;
+    }
+</style>
 @endpush

@@ -15,6 +15,10 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->string('concept');
+            $table->foreignId('reservation_id')->constrained();
+            $table->foreignId('user_id')->constrained(); // DNI_Huesped
+            $table->float('ammount');
             $table->timestamps();
         });
     }
