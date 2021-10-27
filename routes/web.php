@@ -92,7 +92,7 @@ Route::group([
         Route::get('/reservas/crear', [AttendantReservation::class, 'create'])->name('reservations.create');
 
         Route::get('/reservas/{reservation}/checkin', [AttendantReservation::class, 'checkin'])->name('reservations.checkin');
-        Route::post('/reservas/{reservation}/checkin', [AttendantReservation::class, 'checkinPost'])->name('reservations.checkinPost');
+        Route::post('/reservas/{reservation}/checkin', [AttendantReservation::class, 'checkinPost']);
         Route::get('/reservas/{reservation}/checkout', [AttendantReservation::class, 'checkout'])->name('reservations.checkout');
 
         Route::get('/pagos', [AttendantPayment::class, 'index'])->name('payments.index');

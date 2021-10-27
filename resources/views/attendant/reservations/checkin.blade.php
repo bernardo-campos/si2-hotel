@@ -19,9 +19,11 @@
 
 <form action="{{ route('attendant.reservations.checkin', $reservation) }}" method="post" onsubmit="return validateForm()" class="mb-5">
     @csrf
-
     @php($p = 1)
-    @foreach ($reservation->rooms as $i => $room)
+    @foreach ($reservation->reservation_rooms as $i => $reservation_room)
+
+        @php( $room = $reservation_room->room )
+
         <div class="card">
             <div class="card-header">
                 Registrar las personas para la habitación {{ $room->number }}
@@ -39,17 +41,32 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input name="room[{{ $room->id }}][{{ $p }}][dni]" type="text" class="form-control" placeholder="DNI  (sólo números)">
+                                <input
+                                name="room[{{ $reservation_room->id }}][{{ $p }}][dni]"
+                                type="text"
+                                class="form-control"
+                                {{ $j == 0 ? 'required' : '' }}
+                                placeholder="DNI  (sólo números)">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input name="room[{{ $room->id }}][{{ $p }}][surname]" type="text" class="form-control"  placeholder="Apellido">
+                                <input
+                                name="room[{{ $reservation_room->id }}][{{ $p }}][surname]"
+                                type="text"
+                                class="form-control"
+                                {{ $j == 0 ? 'required' : '' }}
+                                placeholder="Apellido">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input name="room[{{ $room->id }}][{{ $p }}][name]" type="text" class="form-control"  placeholder="Nombre">
+                                <input
+                                name="room[{{ $reservation_room->id }}][{{ $p }}][name]"
+                                type="text"
+                                class="form-control"
+                                {{ $j == 0 ? 'required' : '' }}
+                                placeholder="Nombre">
                             </div>
                         </div>
                     </div>
@@ -94,7 +111,7 @@
 </script>
 <script type="text/javascript">
 
-    const capacity = $('input[name=capacity]').val();
+    const capacity = {{ $reservation->people_qty }};
 
     function count(arr) {
         return  arr.filter( x => x != '').length;

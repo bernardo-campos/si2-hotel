@@ -34,18 +34,12 @@ class ReservationController extends Controller
     {
         // dd( $request->all(), $reservation->toArray() );
 
-        foreach($request->room as $room_id => $roomPeople) {
-
-            $reservationRoom = ReservationRoom::create([
-                'reservation_id' => $reservation->id,
-                'room_id' => $room_id,
-                // unsignedTinyInteger('cribs')->default(0);
-            ]);
+        foreach($request->room as $reservation_room_id => $roomPeople) {
 
             foreach($roomPeople as $person) {
                 if ( isset($person['dni']) || isset($person['name']) || isset($person['surname']) ) {
                     ReservationRoomPeople::create([
-                        'reservation_room_id' => $reservationRoom->id,
+                        'reservation_room_id' => $reservation_room_id,
                         'dni' => $person['dni'],
                         'name' => $person['name'],
                         'surname' => $person['surname'],

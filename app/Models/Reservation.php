@@ -67,6 +67,10 @@ class Reservation extends Model
         return $this->belongsToMany(Room::class, 'reservation_rooms');
     }
 
+    public function reservation_rooms() {
+        return $this->hasMany(ReservationRoom::class);
+    }
+
     public function people() {
         return $this->hasManyThrough(ReservationRoomPeople::class, ReservationRoom::class);
     }
